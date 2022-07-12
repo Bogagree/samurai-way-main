@@ -1,0 +1,83 @@
+.header {
+    grid-area: h;
+    height: 80px;
+    background-color: #ffffff;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+.header_wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    padding: 0 0 3px 45px;
+    display: flex;
+    position: relative;
+}
+
+a {
+    text-decoration: none;
+    position: relative;
+}
+
+h1 {
+    margin: 0;
+    font-size: 18px;
+    color: black;
+}
+
+.logo_subtitle1 {
+    font-size: 10px;
+    display: inline-block;
+    position: absolute;
+    right: 10px;
+    top: 20px;
+    color: red;
+}
+
+.logo_subtitle2 {
+    font-size: 14px;
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    top: 30px;
+    color: gold;
+}
+
+
+.logo:before {
+    content: "";
+    background-image: url("/src/assets/icons/logo/logo1.svg");
+    background-size: 35px 35px;
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    left: 10px;
+    top: 15px;
+}
+
+button {
+    margin: 10px;
+    padding: 15px;
+}
+
+.header_yo_hey {
+    padding-top: 5px;
+}
+
+.sign_in_button {
+    background: white;
+    border: 1px solid gold ;
+}
+
+.sign_up_button {
+    background: gold;
+    border: 1px solid gold ;
+    box-sizing: inherit;
+}
+
+
+

@@ -1,0 +1,46 @@
+h5, p {
+    margin: 3px;
+}
+
+.post_content {
+    border: 1px solid gold;
+    margin: 5px;
+}
+
+.post_container img {
+    width: 100px;
+}
+
+.img_responsive {
+    max-width: 500px;
+    padding: 10px;
+}
+
+.profile_photo_md {
+    border-radius: 50%;
+    margin-left: 15px;
+}
+
+.profile_photo_sm {
+    border-radius: 50%;
+    border: 1px solid red;
+    margin-left: 35px;
+}
+
+.ion_thumbsup::after {
+    content: "";
+    background-image: url("/src/assets/icons/hand-signs/green_thumb_up.jpg");
+    background-size: 20px 20px;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+}
+
+.fa_thumbs_down:after {
+    content: "";
+    background-image: url("/src/assets/icons/hand-signs/red_thumb_down.jpg");
+    background-size: 20px 20px;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+}
