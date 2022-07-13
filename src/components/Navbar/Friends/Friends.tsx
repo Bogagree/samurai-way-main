@@ -27,7 +27,7 @@ export const Friends: React.FC<FriendsPropsType> = (props) => {
         <div className={style.wrapper}>
             <div className={style.friends}>
             {props.friends.map(
-                f => <Friend id={f.id} fotoSrc={friendsAvatars[f.id]} name={f.name}/>)}
+                f => <Friend  key={f.id} id={f.id} fotoSrc={friendsAvatars[f.id]} name={f.name}/>)}
             </div>
             </div>
     )

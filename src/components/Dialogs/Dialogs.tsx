@@ -10,8 +10,16 @@ type PropsType = {
 
 export const Dialogs: React.FC<PropsType> = (props) => {
 
+    let newMessage = React.createRef<HTMLTextAreaElement>()
+
+    const addMessage = () => {
+        let text =  newMessage.current?.value
+        alert(text)
+    }
+
     return (
         <div className={style.dialogs}>
+
             <div className={style.dialogs_items}>
 
                 {props.dialogPage.dialogs.map( (dialog, index) =>
@@ -30,6 +38,12 @@ export const Dialogs: React.FC<PropsType> = (props) => {
                         messagePage={m}
                     />)}
             </div>
+
+            <div>
+                <textarea name="post" ref={newMessage}></textarea>
+                <button onClick={addMessage}>add post</button>
+            </div>
+
         </div>
     )
 }

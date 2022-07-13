@@ -14,7 +14,7 @@ export const Post: React.FC<PostPropsType> = (props) => {
     return (
         <>
             { props.posts.map( post =>
-                <div className={style.post_content}>
+                <div className={style.post_content} key={post.id}>
                     <img src={post1} alt="post 1" className={`${style.img_responsive} ${style.post_image}`}/>
 
                     <div className={style.post_container}>
@@ -27,7 +27,7 @@ export const Post: React.FC<PostPropsType> = (props) => {
                             </div>
 
                             <div className="user-info">
-                                <h5><a href="timeline.html" className="profile-link">Dmitry B.</a> <span
+                                <h5><a href="#" className="profile-link">Dmitry B.</a> <span
                                     className="following">following</span></h5>
                                 <p className="text-muted">Published a photo about {post.published} hour ago</p>
                             </div>
@@ -49,14 +49,15 @@ export const Post: React.FC<PostPropsType> = (props) => {
                             <div className="post-comment">
                                 <img src={user_foto2} alt=""
                                      className={style.profile_photo_sm}/>
-                                <p><a href="timeline.html" className="profile-link">Cris </a> Это текст коммента, который
+                                <p><a href="#" className="profile-link">Cris </a> Это текст коммента, который
                                     еще не добавлен в пропсы."<i
                                         className="em em-muscle"></i></p>
+
                             </div>
                             <div className="post-comment">
                                 <img src="#" alt="" className="profile-photo-sm"/>
                                 <input type="text" className="form-control" placeholder="Post a comment"/>
-
+                                <button>comment</button>
 
                             </div>
                         </div>
