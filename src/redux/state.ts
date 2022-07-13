@@ -1,3 +1,5 @@
+import {renderEntireTree} from "../render";
+
 export type MessageType = {
     id: number
     message: string
@@ -11,7 +13,7 @@ export type PostType = {
     message: string
     likesCount: number
     disLikesCount: number
-    published: number
+    published: string
 }
 export type ProfilePageType = {
     posts: Array<PostType>
@@ -53,10 +55,10 @@ export type RootStatetype = {
 let state: RootStatetype = {
     profilePage: {
         posts: [
-            {id: 1, message: "Dude!", likesCount: 1, disLikesCount: 2, published: 1},
-            {id: 2, message: "What\'s ap man?", likesCount: 3, disLikesCount: 4, published: 2},
-            {id: 3, message: "Yo, bro!", likesCount: 5, disLikesCount: 6, published: 3},
-            {id: 4, message: "Yo, yo bro!", likesCount: 7, disLikesCount: 8, published: 4},
+            {id: 1, message: "Dude!", likesCount: 1, disLikesCount: 2, published: "7/13/2022, 11:46:03 AM"},
+            {id: 2, message: "What\'s ap man?", likesCount: 3, disLikesCount: 4, published: "7/13/2022, 11:47:03 AM"},
+            // {id: 3, message: "Yo, bro!", likesCount: 5, disLikesCount: 6, published: "7/13/2022, 11:48:03 AM"},
+            // {id: 4, message: "Yo, yo bro!", likesCount: 7, disLikesCount: 8, published: "7/13/2022, 11:49:03 AM"},
         ]
     },
     dialogPage: {
@@ -93,6 +95,19 @@ let state: RootStatetype = {
     musicPage: {},
     settingsPage: {},
     newsPage: {}
+};
+
+export let addPost = (postMessage:string) => {
+    let newPost = {
+        id: 5,
+        message: postMessage,
+        likesCount: 0,
+        disLikesCount: 0,
+        published: new Date().toLocaleString()
+    };
+
+    state.profilePage.posts.push(newPost)
+    renderEntireTree(state)
 }
 
 export default state

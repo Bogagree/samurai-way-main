@@ -8,11 +8,12 @@ h5, p {
 }
 
 .post_container img {
+
     width: 100px;
 }
 
 .img_responsive {
-    max-width: 500px;
+    max-width: 300px;
     padding: 10px;
 }
 
