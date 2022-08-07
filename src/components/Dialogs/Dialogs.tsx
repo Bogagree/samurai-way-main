@@ -2,10 +2,11 @@ import React from "react";
 import style from './Dialogs.module.css'
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
-import {DialogsPageType} from "./../../redux/state"
+import {DialogsPageType} from "../../redux/state";
 
 type PropsType = {
     dialogPage: DialogsPageType
+    addMessage: (newMessage: string) => void
 }
 
 export const Dialogs: React.FC<PropsType> = (props) => {
@@ -14,7 +15,7 @@ export const Dialogs: React.FC<PropsType> = (props) => {
 
     const addMessage = () => {
         let text =  newMessage.current?.value
-        alert(text)
+        text && props.addMessage(text)
     }
 
     return (
@@ -41,7 +42,7 @@ export const Dialogs: React.FC<PropsType> = (props) => {
 
             <div>
                 <textarea name="post" ref={newMessage}></textarea>
-                <button onClick={addMessage}>add post</button>
+                <button onClick={addMessage}>add message</button>
             </div>
 
         </div>

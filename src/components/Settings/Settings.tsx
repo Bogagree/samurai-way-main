@@ -1,9 +1,6 @@
 import React from "react";
-import style from './Settings.module.css'
 
-type SettingsPropsType = {}
-
-export const Settings = (props: SettingsPropsType) => {
+export const Settings = () => {
     return (
         <div>
             News

@@ -57,12 +57,12 @@ export const Post: React.FC<PostPropsType> = (props) => {
                         </div>
                         <div className="post-comment">
                             <img src="#" alt="" className="profile-photo-sm"/>
-                            <input type="text" className="form-control" placeholder="Post a comment"/>
+                            <input name="comment-post" type="text" className="form-control" placeholder="Post a comment"/>
                             <button>comment</button>
 
                         </div>
                     </div>
-                </div>
+                </div>s
             </div>
             )
 

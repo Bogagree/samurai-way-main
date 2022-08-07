@@ -1,4 +1,6 @@
-import {renderEntireTree} from "../render";
+let renderEntireTree = ( ) => {
+    console.log('state changed')
+}
 
 export type MessageType = {
     id: number
@@ -17,31 +19,24 @@ export type PostType = {
 }
 export type ProfilePageType = {
     posts: Array<PostType>
+    newPost: string
 }
 export type DialogsPageType = {
     dialogs: Array<DialogType>
     messagesPage: Array<MessageType>
 }
-
 export type HeaderType = {}
-
 export type FriendType = {
     id: number
     name: string
     fotoSrc: string
 }
-
 export type NavbarType = {
     friends: Array<FriendType>
 }
-
 export type MusicPageType = {}
-
 export type SettingsPageType = {}
-
 export type NewsPageType = {}
-
-
 export type RootStatetype = {
     profilePage: ProfilePageType
     dialogPage: DialogsPageType
@@ -59,7 +54,8 @@ let state: RootStatetype = {
             {id: 2, message: "What\'s ap man?", likesCount: 3, disLikesCount: 4, published: "7/13/2022, 11:47:03 AM"},
             // {id: 3, message: "Yo, bro!", likesCount: 5, disLikesCount: 6, published: "7/13/2022, 11:48:03 AM"},
             // {id: 4, message: "Yo, yo bro!", likesCount: 7, disLikesCount: 8, published: "7/13/2022, 11:49:03 AM"},
-        ]
+        ],
+        newPost: 'IT-kamasutra.com'
     },
     dialogPage: {
         dialogs: [
@@ -97,7 +93,10 @@ let state: RootStatetype = {
     newsPage: {}
 };
 
-export let addPost = (postMessage:string) => {
+// @ts-ignore
+window.state = state
+
+export let addPost = (postMessage: string) => {
     let newPost = {
         id: 5,
         message: postMessage,
@@ -105,9 +104,26 @@ export let addPost = (postMessage:string) => {
         disLikesCount: 0,
         published: new Date().toLocaleString()
     };
-
     state.profilePage.posts.push(newPost)
-    renderEntireTree(state)
+    renderEntireTree()
+}
+
+export let updateNewPostText = (newText: string) => {
+    state.profilePage.newPost = newText
+    renderEntireTree()
+}
+
+export let addMessage = (newComment: string) => {
+    let newMessage = {
+        id: 6,
+        message: newComment
+    }
+    state.dialogPage.messagesPage.push(newMessage)
+    renderEntireTree()
+}
+
+export const subscribe = (callback: () => void) => {
+    renderEntireTree = callback
 }
 
 export default state

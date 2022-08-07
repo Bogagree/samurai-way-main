@@ -14,7 +14,9 @@ import {Profile} from "./components/Profile/Profile";
 
 type Props = {
     state: RootStatetype
-    addPost: (newMessage: string) => void
+    addPost: (newPostMessage: string) => void
+    addMessage: (newMessage: string) => void
+    updateNewPostText: (newText: string) => void
 }
 
 const MemoHeader = React.memo(Header)
@@ -28,11 +30,15 @@ export const App: React.FC<Props> = (props) => {
             <div className="app-wrapper-content">
                 <Route
                     path="/dialogs"
-                    render={() => <Dialogs dialogPage={props.state.dialogPage}/>}/>
+                    render={() => <Dialogs dialogPage={props.state.dialogPage}
+                                           addMessage={props.addMessage}
+                    />}/>
                 <Route
                     path="/profile"
                     render={() => <Profile profilePage={props.state.profilePage}
                                            addPost={props.addPost}
+                                           updateNewPostText={props.updateNewPostText}
+
                     />}
                 />
 
