@@ -12,7 +12,7 @@ import {RootStatetype} from "./redux/state";
 import {Profile} from "./components/Profile/Profile";
 
 
-type Props = {
+type PropsType = {
     state: RootStatetype
     addPost: (newPostMessage: string) => void
     addMessage: (newMessage: string) => void
@@ -21,7 +21,7 @@ type Props = {
 
 const MemoHeader = React.memo(Header)
 
-export const App: React.FC<Props> = (props) => {
+export const App: React.FC<PropsType> = (props) => {
 
     return (
         <div className="app-wrapper">

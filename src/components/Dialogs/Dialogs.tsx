@@ -39,11 +39,13 @@ export const Dialogs: React.FC<PropsType> = (props) => {
                         messagePage={m}
                     />)}
 
-                <div>
+                <div className={style.sendMessage}>
                     <textarea name="post"
                               ref={newMessage}
                               placeholder={'add message'}
-                              className={style.textArea}></textarea>
+                              className={style.textArea}>
+
+                    </textarea>
                     <button onClick={addMessage}>add message</button>
                 </div>
             </div>
