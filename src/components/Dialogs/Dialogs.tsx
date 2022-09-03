@@ -14,7 +14,7 @@ export const Dialogs: React.FC<PropsType> = (props) => {
     let newMessage = React.createRef<HTMLTextAreaElement>()
 
     const addMessage = () => {
-        let text =  newMessage.current?.value
+        let text = newMessage.current?.value
         text && props.addMessage(text)
     }
 
@@ -23,7 +23,7 @@ export const Dialogs: React.FC<PropsType> = (props) => {
 
             <div className={style.dialogs_items}>
 
-                {props.dialogPage.dialogs.map( (dialog, index) =>
+                {props.dialogPage.dialogs.map((dialog, index) =>
                     <DialogItem
                         key={index}
                         id={dialog.id}
@@ -33,17 +33,21 @@ export const Dialogs: React.FC<PropsType> = (props) => {
 
             <div className={style.messages}>
 
-                {props.dialogPage.messagesPage.map( m =>
+                {props.dialogPage.messagesPage.map(m =>
                     <Message
                         key={m.id}
                         messagePage={m}
                     />)}
+
+                <div>
+                    <textarea name="post"
+                              ref={newMessage}
+                              placeholder={'add message'}
+                              className={style.textArea}></textarea>
+                    <button onClick={addMessage}>add message</button>
+                </div>
             </div>
 
-            <div>
-                <textarea name="post" ref={newMessage}></textarea>
-                <button onClick={addMessage}>add message</button>
-            </div>
 
         </div>
     )

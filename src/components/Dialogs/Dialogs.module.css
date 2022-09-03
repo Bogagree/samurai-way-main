@@ -28,3 +28,12 @@
     font-weight: bold;
 }
 
+.textArea {
+    margin: 5px;
+    padding: 10px;
+    width: 100%;
+    background: #fff;
+    border-radius: 15px;
+    font-size: 18px;
+    color: #8f8fa1;
+}
