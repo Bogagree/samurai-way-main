@@ -37,11 +37,16 @@ export type UsersStateType = {
 
 export type UserType = {
     id: number
-    name: string
+    fullName: string
     status: string
-    photos: {
+    location: {
+        country: string
+        city: string
+    }
+    photos?: {
         small: string | null
         large: string | null
     }
     followed: boolean
+
 }

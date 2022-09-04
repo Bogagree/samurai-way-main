@@ -57,6 +57,15 @@ ul {
     height: 30px;
 }
 
+.item_users::before {
+    content: "";
+    background-image: url("/src/assets/icons/logo_samurai.svg");
+    background-size: 30px 30px;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+}
+
 .nav_links {
     display: flex;
     flex-direction: column;
