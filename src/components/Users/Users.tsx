@@ -6,7 +6,7 @@ import style from './Users.module.css'
 
 export const Users: React.FC<UsersPropsType> = (props) => {
 
-    if (props.usersPage.users.length === 0)
+    if (props.users.length === 0)
         axios.get('https://social-network.samuraijs.com/api/1.0/users?count=5',
         )
             .then((res) => {
@@ -73,7 +73,7 @@ export const Users: React.FC<UsersPropsType> = (props) => {
         <div style={{padding: '15px'}}>
             <h1>Users</h1>
             {
-                props.usersPage.users.map(u => <div key={u.id}>
+                props.users.map(u => <div key={u.id}>
                     <div style={{display: 'flex', padding: '5px'}}>
                         <div>
                             <div className={style.ava_container}><img src={ u.photos.small !== null ? `${u.photos.small}` : defaultAvatar} alt="user_foto" className={style.avatar}/></div>
@@ -85,9 +85,6 @@ export const Users: React.FC<UsersPropsType> = (props) => {
                             <br/>
                             <strong><i>status</i></strong>: {u.status}
                             <br/>
-                            {/*country: {u.location.country}*/}
-                            <br/>
-                            {/*city: {u.location.city}*/}
                             <hr/>
                         </div>
                     </div>

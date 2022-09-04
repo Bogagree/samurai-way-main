@@ -39,10 +39,6 @@ export type UserType = {
     id: number
     name: string
     status: string
-    // location?: {
-    //     country: string
-    //     city: string
-    // }
     photos: {
         small: string | null
         large: string | null

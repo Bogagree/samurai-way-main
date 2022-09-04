@@ -8,7 +8,7 @@ const rootReducer = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,
     navbar: navbarReducer,
-    users: usersReducer
+    usersPage: usersReducer
 })
 
 export let store = createStore(rootReducer);
