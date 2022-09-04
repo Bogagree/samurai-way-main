@@ -1,11 +1,10 @@
 import React from 'react';
 import style from './Navbar.module.css'
-import {NavLink} from "react-router-dom";
-import {Friends} from "./Friends/Friends";
-import {FriendType} from "../../redux/state";
+import {NavLink, Route} from "react-router-dom";
+import {FriendsContainer} from "./Friends/FriendsContainer";
 
 type NavbarPropsType = {
-    friends: Array<FriendType>
+
 }
 
 export const Navbar: React.FC<NavbarPropsType> = (props) => {
@@ -40,8 +39,9 @@ export const Navbar: React.FC<NavbarPropsType> = (props) => {
                     </li>
                 </ul>
 
-                <Friends friends={props.friends}/>
-
+                <Route
+                    path="/profile"
+                    render={() => <FriendsContainer/>} />
             </nav>
         </>
     );

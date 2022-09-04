@@ -99,42 +99,42 @@ let renderEntireTree = () => {
     console.log('state changed')
 }
 
-export type MessageType = {
+type MessageType = {
     id: number
     message: string
 }
-export type DialogType = {
+type DialogType = {
     id: number
     name: string
 }
-export type PostType = {
+type PostType = {
     id: number
     message: string
     likesCount: number
     disLikesCount: number
     published: string
 }
-export type ProfilePageType = {
+type ProfilePageType = {
     posts: Array<PostType>
     newPost: string
 }
-export type DialogsPageType = {
+type DialogsPageType = {
     dialogs: Array<DialogType>
     messagesPage: Array<MessageType>
 }
-export type HeaderType = {}
-export type FriendType = {
+type HeaderType = {}
+type FriendType = {
     id: number
     name: string
     fotoSrc: string
 }
-export type NavbarType = {
+type NavbarType = {
     friends: Array<FriendType>
 }
-export type MusicPageType = {}
-export type SettingsPageType = {}
-export type NewsPageType = {}
-export type RootStatetype = {
+type MusicPageType = {}
+type SettingsPageType = {}
+type NewsPageType = {}
+type RootStatetype = {
     profilePage: ProfilePageType
     dialogPage: DialogsPageType
     header: HeaderType

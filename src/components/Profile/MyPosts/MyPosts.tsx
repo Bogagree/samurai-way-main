@@ -1,12 +1,11 @@
 import React from 'react';
-import style from './MyPosts.module.css'
 import {Post} from "./Post/Post";
-import {PostType} from "../../../redux/state";
+import {PostType} from "../../../redux/profile-reducer";
 
 type MyPostsType = {
     posts: Array<PostType>
     addPost: (newMessage: string) => void
-    updateNewPostText: (newText: string) => void
+    updateNewPostText?: (newText: string) => void
 }
 
 export const MyPosts: React.FC<MyPostsType> = (props) => {
@@ -29,8 +28,9 @@ export const MyPosts: React.FC<MyPostsType> = (props) => {
     let text = newPostElement.current?.value
 
     const onChangeHandler = () => {
-        text && props.updateNewPostText(text)
+        // text && props.updateNewPostText(text)
     }
+    console.log(props.posts)
 
     return (
         <>
@@ -43,8 +43,7 @@ export const MyPosts: React.FC<MyPostsType> = (props) => {
                 <button onClick={addPost}>add post</button>
             </div>
 
-            <div className={style.posts_content}>
-
+            <div>
                 {props.posts.map( (p) =>
                     <Post key={p.id}
                           post={p}

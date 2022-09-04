@@ -1,11 +1,8 @@
-import {FriendType} from "../../../../redux/state";
 import React from "react";
 import style from "./../Friends.module.css"
+import {FriendType} from "../../../../redux/navbar-reducer";
 
-
-type FriendPropsType = FriendType
-
-export const Friend: React.FC<FriendPropsType> = (props) => {
+export const Friend: React.FC<FriendType> = (props) => {
   return (
       <div className={style.friend}>
 

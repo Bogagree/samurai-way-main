@@ -3,7 +3,7 @@ import style from './Post.module.css'
 import user_foto1 from '../../../../assets/images/avatars/user_foto1.jpg'
 import user_foto2 from '../../../../assets/images/avatars/2.png'
 import post1 from '../../../../assets/images/yello_background with_samurai.jpg'
-import {PostType} from "../../../../redux/state";
+import {PostType} from "../../../../redux/profile-reducer";
 
 export type PostPropsType = {
     post: PostType
