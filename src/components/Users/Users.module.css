@@ -1,0 +1,9 @@
+.ava_container {
+    display: flex;
+    justify-content: center;
+}
+.avatar {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+}
