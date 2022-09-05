@@ -1,3 +1,11 @@
 img {
     max-width:1000px;
 }
+
+
+.userProfile {
+    border: 5px solid gold;
+    border-radius: 10px;
+    padding: 5px;
+    margin: 5px;
+}

@@ -1,39 +1,40 @@
-export const ADD_POST = "ADD-POST"
-export const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT"
+const PROFILE_ADD_POST = "ADD-POST"
+const PROFILE_SET_USER_PROFILE = "PROFILE-SET-USER-PROFILE"
+const PROFILE_TOGGLE_ISFETCHING = 'PROFILE/TOGGLE_ISFETCHING'
+
 
 const initialState: ProfileStateType = {
-    dialogsPage:
+
+    posts: [
+        {id: 1, message: "Dude!", likesCount: 1, disLikesCount: 2, published: "7/13/2022, 11:46:03 AM"},
         {
-            posts: [
-                {id: 1, message: "Dude!", likesCount: 1, disLikesCount: 2, published: "7/13/2022, 11:46:03 AM"},
-                {
-                    id: 2,
-                    message: "What\'s ap man?",
-                    likesCount: 3,
-                    disLikesCount: 4,
-                    published: "7/13/2022, 11:47:03 AM"
-                },
-                // {id: 3, message: "Yo, bro!", likesCount: 5, disLikesCount: 6, published: "7/13/2022, 11:48:03 AM"},
-                // {id: 4, message: "Yo, yo bro!", likesCount: 7, disLikesCount: 8, published: "7/13/2022, 11:49:03 AM"},
-            ],
-        }
+            id: 2,
+            message: "What\'s ap man?",
+            likesCount: 3,
+            disLikesCount: 4,
+            published: "7/13/2022, 11:47:03 AM"
+        },
+    ],
+    userProfile: null,
+    isFetching: false
 }
+
 
 export const profileReducer = (state = initialState, action: ProfileActionType): ProfileStateType => {
     switch (action.type) {
-        case ADD_POST :
+        case PROFILE_ADD_POST :
+            return {
+                ...state
+            }
+        case PROFILE_SET_USER_PROFILE:
             return {
                 ...state,
-                dialogsPage: {
-                    posts: [...state.dialogsPage.posts,
-                        {
-                            id: 6,
-                            message: action.postMessage,
-                            likesCount: 0,
-                            disLikesCount: 0,
-                            published: new Date().toLocaleString()
-                        }]
-                }
+                userProfile: action.userProfile
+            }
+        case PROFILE_TOGGLE_ISFETCHING :
+            return {
+                ...state,
+                isFetching: action.isFetching
             }
         default:
             return state
@@ -41,15 +42,26 @@ export const profileReducer = (state = initialState, action: ProfileActionType):
 };
 
 export const addPostAC = (postMessage: string) => {
-    return {type: ADD_POST, postMessage} as const
+    return {type: PROFILE_ADD_POST, postMessage} as const
+}
+
+export const setUser = (userProfile: UserProfileType) => {
+    return {type: PROFILE_SET_USER_PROFILE, userProfile} as const
+}
+
+export const toggleIsFetching = (isFetching: boolean) => {
+    return {type: PROFILE_TOGGLE_ISFETCHING, isFetching} as const
 }
 
 type ProfileActionType = ReturnType<typeof addPostAC>
+    | ReturnType<typeof setUser>
+    | ReturnType<typeof toggleIsFetching>
+
 
 export type ProfileStateType = {
-    dialogsPage: {
-        posts: PostType[]
-    }
+    posts: PostType[]
+    userProfile: UserProfileType | null
+    isFetching: boolean
 }
 
 export type PostType = {
@@ -58,4 +70,28 @@ export type PostType = {
     likesCount: number
     disLikesCount: number
     published: string
+}
+
+export type UserProfileType = {
+    userId: number
+    aboutMe: string
+    lookingForAJob: boolean
+    lookingForAJobDescription: string
+    fullName: string
+    contacts: ContactsType
+    photos: {
+        small: string
+        large: string
+    }
+}
+
+export type ContactsType = {
+    facebook: string | null
+    website: string | null
+    vk: string | null
+    twitter: string | null
+    github: string | null
+    instagram: string | null
+    youtube: string | null
+    mainLink: string | null
 }

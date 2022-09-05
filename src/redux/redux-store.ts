@@ -7,7 +7,7 @@ import {usersReducer} from "./users-reducer";
 const rootReducer = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,
-    navbar: navbarReducer,
+    navbarPage: navbarReducer,
     usersPage: usersReducer
 })
 

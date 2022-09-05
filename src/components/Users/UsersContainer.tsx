@@ -15,7 +15,7 @@ import {Users} from "./Users";
 import {Preloader} from "../Common/Preloader";
 
 
-class UsersContainer extends React.Component<UsersPropsType> {
+class UsersContainer extends React.Component<UsersContainerPropsType> {
 
     componentDidMount() {
         this.props.toggleIsFetching(true)
@@ -42,7 +42,7 @@ class UsersContainer extends React.Component<UsersPropsType> {
     render() {
 
         return <>
-            {this.props.isFetching ? <Preloader/>: null}
+            {this.props.isFetching ? <Preloader/> : null}
             <Users
                 users={this.props.users}
                 onPageChanged={this.onPageChanged}
@@ -64,7 +64,6 @@ const mapStateToProps = (state: AppRootStateType): MapStatePropsType => {
         isFetching: state.usersPage.isFetching
     }
 }
-
 // const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
 //     return {
 //         isFollowed: (userId: number) => {
@@ -73,31 +72,32 @@ const mapStateToProps = (state: AppRootStateType): MapStatePropsType => {
 //         setUsers: (users: UserType[]) => {
 //             dispatch(setUsersAC(users))
 //         },
+//         toggleIsFetching: (isFetching: boolean) => {
+//             dispatch(toggleIsFetchingAC(isFetching))
+//         }
 //         setCurrentPage: (currentPage: number) => {
 //             dispatch(setCurrentPageAC(currentPage))
 //         },
 //         setTotalCount: (totalCount: number) => {
 //             dispatch(setTotalCountAC(totalCount))
 //         },
-//         toggleIsFetching: (isFetching: boolean) => {
-//             dispatch(toggleIsFetchingAC(isFetching))
-//         }
+//
 //     }
 // }
 
+
 export default connect(mapStateToProps, {
-  followUnFollow, setUsers, setCurrentPage, setTotalCount, toggleIsFetching
+    followUnFollow, setUsers, setCurrentPage, setTotalCount, toggleIsFetching
 })(UsersContainer)
 
-// export type UsersPropsType = MapStatePropsType & MapDispatchPropsType
-export type UsersPropsType = MapStatePropsType & MapDispatchPropsType
+export type UsersContainerPropsType = MapStatePropsType & MapDispatchPropsType
 
 type MapStatePropsType = UsersStateType
 
 type MapDispatchPropsType = {
     followUnFollow: (userId: number) => void
-    setUsers: (users: UserType[]) => void
     setCurrentPage: (currentPage: number) => void
     setTotalCount: (totalCount: number) => void
+    setUsers: (users: UserType[]) => void
     toggleIsFetching: (isFetching: boolean) => void
 }

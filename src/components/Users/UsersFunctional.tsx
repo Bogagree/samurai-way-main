@@ -1,10 +1,10 @@
 import React from 'react';
-import {UsersPropsType} from "./UsersContainer";
+import {UsersContainerPropsType} from "./UsersContainer";
 import axios from "axios";
 import defaultAvatar from '../../assets/images/avatars/2.png';
 import style from './Users.module.css'
 
-const UsersFunctional: React.FC<UsersPropsType> = (props) => {
+const UsersFunctional: React.FC<UsersContainerPropsType> = (props) => {
 
     if (props.users.length === 0)
         axios.get('https://social-network.samuraijs.com/api/1.0/users?count=5',

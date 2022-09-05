@@ -2,7 +2,7 @@ import style from "./Users.module.css";
 import defaultAvatar from "../../assets/images/avatars/2.png";
 import React from "react";
 import {UserType} from "../../redux/users-reducer";
-import {Preloader} from "../Common/Preloader";
+import {NavLink} from "react-router-dom";
 
 
 type UsersComponentPropsType = {
@@ -40,13 +40,16 @@ export const Users = (props: UsersComponentPropsType) => {
             </div>
             {
                 props.users.map(u => {
-                    // if (u.photos.small !== null)
                     return <div key={u.id}>
                         <div style={{display: 'flex', padding: '5px'}}>
                             <div>
-                                <div className={style.ava_container}><img
-                                    src={u.photos.small ? `${u.photos.small}` : defaultAvatar}
-                                    alt="user_foto" className={style.avatar}/></div>
+                                <div className={style.ava_container}>
+                                    <NavLink to={'/profile/'+ u.id}>
+                                        <img
+                                        src={u.photos.small ? `${u.photos.small}` : defaultAvatar}
+                                        alt="user_foto" className={style.avatar}
+                                    /></NavLink>
+                                </div>
                                 <button
                                     onClick={() => props.isFollowed(u.id)}> {u.followed ? 'Follow' : 'UnFollow'}</button>
                             </div>
