@@ -3,8 +3,41 @@ import {AppRootStateType} from "../../redux/redux-store";
 import {connect} from "react-redux";
 import {followUnFollowAC, setCurrentPageAC, setTotalCountAC, setUsersAC, UserType} from "../../redux/users-reducer";
 import {Dispatch} from "redux";
-import UsersC from "./UsersC";
+import axios from "axios";
+import {Users} from "./Users";
 
+class UsersContainer extends React.Component<UsersPropsType> {
+
+    componentDidMount() {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`
+        )
+            .then((res) => {
+                this.props.setUsers(res.data.items)
+                this.props.setTotalCount(res.data.totalCount)
+            })
+    }
+
+    onPageChanged = (pageNumber: number) => {
+        this.props.setCurrentPage(pageNumber)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`
+        )
+            .then((res) => {
+                this.props.setUsers(res.data.items)
+            })
+    }
+
+    render() {
+
+        return <Users
+            users={this.props.users}
+            onPageChanged={this.onPageChanged}
+            currentPage={this.props.currentPage}
+            isFollowed={this.props.isFollowed}
+            pageSize={this.props.pageSize}
+            totalCount={this.props.totalCount}
+        />
+    }
+}
 
 const mapStateToProps = (state: AppRootStateType): MapStatePropsType => {
     return {
@@ -29,11 +62,12 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
         setTotalCount: (totalCount: number) => {
             dispatch(setTotalCountAC(totalCount))
         }
-
     }
 }
 
-export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersC)
+export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer)
+
+export type UsersPropsType = MapStatePropsType & MapDispatchPropsType
 
 type MapStatePropsType = {
     users: UserType[]
@@ -48,5 +82,3 @@ type MapDispatchPropsType = {
     setCurrentPage: (currentPage: number) => void
     setTotalCount: (totalCount: number) => void
 }
-
-export type UsersPropsType = MapStatePropsType & MapDispatchPropsType

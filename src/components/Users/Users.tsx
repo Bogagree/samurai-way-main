@@ -1,95 +1,65 @@
-import React from 'react';
-import {UsersPropsType} from "./UsersContainer";
-import axios from "axios";
-import defaultAvatar from '../../assets/images/avatars/2.png';
-import style from './Users.module.css'
+import style from "./Users.module.css";
+import defaultAvatar from "../../assets/images/avatars/2.png";
+import React from "react";
+import {UserType} from "../../redux/users-reducer";
 
-export const Users: React.FC<UsersPropsType> = (props) => {
 
-    if (props.users.length === 0)
-        axios.get('https://social-network.samuraijs.com/api/1.0/users?count=5',
-        )
-            .then((res) => {
-                props.setUsers(res.data.items)
-            })
-        // props.setUsers([
-        //     {
-        //         id: 1,
-        //         fullName: 'Dimych B',
-        //         status: 'Coding my Samurai Way',
-        {/*        location: {*/}
-        {/*            country: 'Russia',*/}
-        {/*            city: 'Taganrog'*/}
-        {/*        },*/}
-        {/*        photos: {*/}
-        //             small: null,
-        //             large: null
-        //         },
-        {/*        followed: true*/}
-        //     },
-        //     {
-        //         id: 2,
-        //         fullName: 'Natasha',
-        //         status: 'Sending request to the Universe',
-        //         location: {
-        //             country: 'Russia',
-        //             city: 'Vladivostok'
-        //         },
-        //         photos: {
-        //             small: null,
-        //             large: null
-        //         },
-        //         followed: true
-        //     },
-        //     {
-        {/*        id: 3,*/}
-        {/*        fullName: 'Nikitos',*/}
-        {/*        status: "I'm businessman",*/}
-        {/*        location: {country: 'Turkey', city: 'Antalya'},*/}
-        {/*        followed: true,*/}
-        {/*    },*/}
-        {/*    {*/}
-        //         id: 4,
-        //         fullName: 'Dmitry_K',
-        //         status: "I'm coder",
-        //         location: {country: 'Belarus', city: 'Minsk'},
-        //         followed: true,
-        //         photos: {
-        //             small: null,
-        //             large: null
-        {/*        },*/}
-        //     },
-        //     {
-        //         id: 5,
-        //         fullName: 'Tosik',
-        //         status: "Kolhoznik and organic farmer",
-        //         location: {country: 'Russia', city: 'Mostovskoy'},
-        //         followed: true
-        //     }
-        //
-        // ])
+type UsersComponentPropsType = {
+    users: UserType[]
+    totalCount: number
+    pageSize: number
+    currentPage: number
+    onPageChanged: (p: number) => void
+    isFollowed: (userId: number) => void
+}
+
+export const Users = (props: UsersComponentPropsType) => {
+    let pagesCount = Math.ceil(props.totalCount / props.pageSize)
+
+    let pages = []
+    for (let i = 1; i <= (pagesCount < 10 ? pagesCount : 10); i++) {
+        pages.push(i)
+    }
 
     return (
         <div style={{padding: '15px'}}>
             <h1>Users</h1>
+            <div>
+                {pages.map(p => {
+                    return <span
+                        key={p}
+                        className={props.currentPage === p ? style.pageNumber + ' ' + style.selectedPage : style.pageNumber}
+                        onClick={() => {
+                            props.onPageChanged(p)
+                        }}
+                    >
+                            {p}</span>
+                })}
+                <strong>total users pages</strong>: {pagesCount}
+            </div>
             {
-                props.users.map(u => <div key={u.id}>
-                    <div style={{display: 'flex', padding: '5px'}}>
-                        <div>
-                            <div className={style.ava_container}><img src={ u.photos.small !== null ? `${u.photos.small}` : defaultAvatar} alt="user_foto" className={style.avatar}/></div>
-                            <button
-                                onClick={() => props.isFollowed(u.id)}> {u.followed ? 'Follow' : 'UnFollow'}</button>
-                        </div>
-                        <div style={{padding: '5px'}}>
-                            <strong>name</strong>: {u.name}
-                            <br/>
-                            <strong><i>status</i></strong>: {u.status}
-                            <br/>
-                            <hr/>
+                props.users.map(u => {
+                    // if (u.photos.small !== null)
+                    return <div key={u.id}>
+                        <div style={{display: 'flex', padding: '5px'}}>
+                            <div>
+                                <div className={style.ava_container}><img
+                                    src={u.photos.small ? `${u.photos.small}` : defaultAvatar}
+                                    alt="user_foto" className={style.avatar}/></div>
+                                <button
+                                    onClick={() => props.isFollowed(u.id)}> {u.followed ? 'Follow' : 'UnFollow'}</button>
+                            </div>
+                            <div style={{padding: '5px'}}>
+                                <strong>name</strong>: {u.name}
+                                <br/>
+                                <strong><i>status</i></strong>: {u.status}
+                                <br/>
+                                <hr/>
+                            </div>
                         </div>
                     </div>
-                </div>)
+                })
             }
         </div>
-    );
-};
+    )
+}
