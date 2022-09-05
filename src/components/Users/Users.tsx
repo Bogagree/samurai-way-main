@@ -2,6 +2,7 @@ import style from "./Users.module.css";
 import defaultAvatar from "../../assets/images/avatars/2.png";
 import React from "react";
 import {UserType} from "../../redux/users-reducer";
+import {Preloader} from "../Common/Preloader";
 
 
 type UsersComponentPropsType = {

@@ -19,3 +19,10 @@
 .selectedPage {
     font-weight: bold;
 }
+
+.preloader {
+    position: absolute;
+    border-radius: 50%;
+    top: 20%;
+    left: 50%;
+}

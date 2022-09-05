@@ -2,12 +2,14 @@ const USERS_FOLLOW_UNFOLLOW = 'USERS/FOLLOW-UNFOLLOW'
 const USERS_SET_USERS = 'USERS/SET-USER'
 const USERS_SET_CURRENT_PAGE = 'USERS/SET-CURRENT-PAGE'
 const USERS_SET_TOTAL_COUNT = 'USERS/SET-TOTAL-COUNT'
+const USERS_TOGGLE_ISFETCHING = 'USERS/TOGGLE_ISFETCHING'
 
 const initialState: UsersStateType = {
     users: [],
     pageSize: 15,
     totalCount: 0,
-    currentPage: 1
+    currentPage: 1,
+    isFetching: false
 }
 
 export const usersReducer = (state = initialState, action: UsersActionType): UsersStateType => {
@@ -27,10 +29,15 @@ export const usersReducer = (state = initialState, action: UsersActionType): Use
                 ...state,
                 currentPage: action.currentPage
             }
-            case USERS_SET_TOTAL_COUNT :
+        case USERS_SET_TOTAL_COUNT :
             return {
                 ...state,
                 totalCount: action.totalCount
+            }
+        case USERS_TOGGLE_ISFETCHING :
+            return {
+                ...state,
+                isFetching: action.isFetching
             }
         default:
             return state
@@ -41,7 +48,8 @@ type UsersActionType =
     ReturnType<typeof followUnFollowAC>
     | ReturnType<typeof setUsersAC>
     | ReturnType<typeof setCurrentPageAC>
-| ReturnType<typeof setTotalCountAC>
+    | ReturnType<typeof setTotalCountAC>
+    | ReturnType<typeof toggleIsFetchingAC>
 
 export const followUnFollowAC = (userId: number) => {
     return {type: USERS_FOLLOW_UNFOLLOW, userId} as const
@@ -53,11 +61,12 @@ export const setUsersAC = (users: UserType[]) => {
 export const setCurrentPageAC = (currentPage: number) => {
     return {type: USERS_SET_CURRENT_PAGE, currentPage} as const
 }
-
 export const setTotalCountAC = (totalCount: number) => {
     return {type: USERS_SET_TOTAL_COUNT, totalCount} as const
 }
-
+export const toggleIsFetchingAC = (isFetching:boolean) => {
+    return {type: USERS_TOGGLE_ISFETCHING, isFetching} as const
+}
 
 
 export type UsersStateType = {
@@ -65,6 +74,7 @@ export type UsersStateType = {
     pageSize: number
     totalCount: number
     currentPage: number
+    isFetching: boolean
 }
 
 export type UserType = {
