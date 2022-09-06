@@ -1,6 +1,7 @@
 import React from 'react';
 import style from './ProfileInfo.module.css'
 import {UserProfileType} from "../../../redux/profile-reducer";
+import {Preloader} from "../../Common/Preloader";
 
 
 type ProfileInfoType = {
@@ -8,6 +9,7 @@ type ProfileInfoType = {
 }
 
 export const ProfileInfo: React.FC<ProfileInfoType> = (props) => {
+
 
     return (
         <div>

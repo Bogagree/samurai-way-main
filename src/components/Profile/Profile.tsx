@@ -12,19 +12,19 @@ type ProfileType = {
 
 export const Profile: React.FC<ProfileType> = (props) => {
 
-    return (
-        <div className={style.profile}>
-            {
-                props.userProfile
-                ? <>
-                    <ProfileInfo userProfile={props.userProfile}/>
-                    <MyPosts posts={props.posts}
-                             addPost={props.addPost}
-                    /></>
-                : <MyPosts posts={props.posts}
-                           addPost={props.addPost}
-                />
-            }
-        </div>
-    );
+        return (
+            <div className={style.profile}>
+                {
+                    props.userProfile
+                        ? <>
+                            <ProfileInfo userProfile={props.userProfile}/>
+                            <MyPosts posts={props.posts}
+                                     addPost={props.addPost}
+                            /></>
+                        : <MyPosts posts={props.posts}
+                                   addPost={props.addPost}
+                        />
+                }
+            </div>
+        );
 };

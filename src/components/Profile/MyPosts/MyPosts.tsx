@@ -12,25 +12,17 @@ export const MyPosts: React.FC<MyPostsType> = (props) => {
 
     let newPostElement = React.createRef<HTMLTextAreaElement>()
 
-    // const [value, setValue] = useState<string>('');
-    // как в видео #33 у Димыча не работало, поэтому сделал локальный стэйт, чтобы очищать textarea
-
     const addPost = () => {
         let text = newPostElement.current?.value
         text &&  props.addPost(text);
         // setValue('')
     }
 
-    // const onChangeHandler = (e:ChangeEvent<HTMLTextAreaElement>) => {
-    //     setValue(e.currentTarget.value)
-    // }
-
     let text = newPostElement.current?.value
 
     const onChangeHandler = () => {
         // text && props.updateNewPostText(text)
     }
-    console.log(props.posts)
 
     return (
         <>

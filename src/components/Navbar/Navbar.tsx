@@ -14,7 +14,7 @@ export const Navbar: React.FC<NavbarPropsType> = (props) => {
                 <ul className={`${style.nav_links}`}>
                     <li>
                         <div className={`${style.item} ${style.item_profiles}`}>
-                            <NavLink to="/profile" activeClassName={style.activeLink}>Profile</NavLink>
+                            <NavLink to="/profile/" activeClassName={style.activeLink}>Profile</NavLink>
                         </div>
                     </li>
 
@@ -45,9 +45,14 @@ export const Navbar: React.FC<NavbarPropsType> = (props) => {
                     </li>
                 </ul>
 
+
+
                 <Route
                     path="/profile"
-                    render={() => <FriendsContainer/>} />
+                    render={() => <FriendsContainer/>}
+                />
+
+
             </nav>
         </>
     );

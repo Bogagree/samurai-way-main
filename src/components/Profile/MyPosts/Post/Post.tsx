@@ -8,12 +8,10 @@ import {PostType} from "../../../../redux/profile-reducer";
 export type PostPropsType = {
     post: PostType
 }
-
 export const Post: React.FC<PostPropsType> = (props) => {
 
     return (
         <>
-
             <div className={style.post_content} key={props.post.id}>
                 <img src={post1} alt="post 1" className={`${style.img_responsive} ${style.post_image}`}/>
 
