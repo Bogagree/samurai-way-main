@@ -5,7 +5,6 @@ import {UserType} from "../../redux/users-reducer";
 import {NavLink} from "react-router-dom";
 import axios from "axios";
 
-
 type UsersComponentPropsType = {
     users: UserType[]
     totalCount: number
@@ -53,7 +52,6 @@ export const Users = (props: UsersComponentPropsType) => {
                                 </div>
                                 <button
                                     onClick={() => {
-                                        debugger
                                         u.followed
                                             ? axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
                                                     withCredentials: true,
@@ -78,8 +76,6 @@ export const Users = (props: UsersComponentPropsType) => {
                                                 }
                                             })
                                     }
-
-
                                     }> {u.followed ? 'Unfollow' : 'Follow'}</button>
                             </div>
                             <div style={{padding: '5px'}}>

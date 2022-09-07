@@ -2,30 +2,26 @@ import React from 'react';
 import {AppRootStateType} from "../../redux/redux-store";
 import {connect} from "react-redux";
 import {
-    toggleFollow,
     setCurrentPage,
     setTotalCount,
     setUsers,
+    toggleFollow,
     toggleIsFetching,
     UsersStateType,
     UserType
 } from "../../redux/users-reducer";
-import axios from "axios";
 import {Users} from "./Users";
 import {Preloader} from "../Common/Preloader";
-
+import {usersAPI} from "../../api/api";
 
 class UsersContainer extends React.Component<UsersContainerPropsType> {
 
     componentDidMount() {
         this.props.toggleIsFetching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {
-                withCredentials: true
-            }
-        )
-            .then((res) => {
-                this.props.setUsers(res.data.items)
-                this.props.setTotalCount(res.data.totalCount)
+        usersAPI.getUsers()
+            .then((data) => {
+                this.props.setUsers(data.items)
+                this.props.setTotalCount(data.totalCount)
                 this.props.toggleIsFetching(false)
             })
     }
@@ -33,12 +29,9 @@ class UsersContainer extends React.Component<UsersContainerPropsType> {
     onPageChanged = (pageNumber: number) => {
         this.props.toggleIsFetching(true)
         this.props.setCurrentPage(pageNumber)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`, {
-                withCredentials: true
-            }
-        )
-            .then((res) => {
-                this.props.setUsers(res.data.items)
+        usersAPI.getUsers()
+            .then((data) => {
+                this.props.setUsers(data.items)
                 this.props.toggleIsFetching(false)
             })
     }
@@ -91,7 +84,7 @@ const mapStateToProps = (state: AppRootStateType): MapStatePropsType => {
 
 
 export default connect(mapStateToProps, {
- toggleFollow, setUsers, setCurrentPage, setTotalCount, toggleIsFetching
+    toggleFollow, setUsers, setCurrentPage, setTotalCount, toggleIsFetching
 })(UsersContainer)
 
 export type UsersContainerPropsType = MapStatePropsType & MapDispatchPropsType
