@@ -5,7 +5,7 @@ import {Friends} from "./Friends";
 
 let mapStateToProps = (state: AppRootStateType) => {
     return {
-        friends: state.navbarPage.friends
+        friends: state.navbar.friends
     }
 }
 

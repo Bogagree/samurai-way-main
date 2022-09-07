@@ -1,6 +1,5 @@
 .header {
     grid-area: h;
-    height: 80px;
     background-color: #ffffff;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
@@ -9,6 +8,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 10px;
 }
 
 .logo {
@@ -59,24 +59,35 @@ h1 {
     top: 15px;
 }
 
-button {
-    margin: 10px;
-    padding: 15px;
-}
-
 .header_yo_hey {
     padding-top: 5px;
 }
 
+
+
+.auth {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.avatar {
+    height: 70px;
+}
+
 .sign_in_button {
+    text-decoration: none;
     background: white;
-    border: 1px solid gold ;
+    color: black;
+    padding: 15px;
+    border: 1px solid gold;
 }
 
 .sign_up_button {
     background: gold;
-    border: 1px solid gold ;
-    box-sizing: inherit;
+    border: 1px solid gold;
+    padding: 15px;
+
 }
 
 

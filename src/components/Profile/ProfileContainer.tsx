@@ -51,17 +51,11 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
 
 let WithUrlDataContainerComponent = withRouter(ProfileContainer)
 
-export const resConnect = connect(mapStateToProps, mapDispatchToProps)(WithUrlDataContainerComponent)
-
-// export default WithUrlDataContainerComponent;
-
-type PathParamsType = {
-    userId: string,
-}
+export const ProfileContainerWithConnect = connect(mapStateToProps, mapDispatchToProps)(WithUrlDataContainerComponent)
 
 type ProfileContainerPropsType = RouteComponentProps<PathParamsType> & OnContainerPropsType
 
-export type OnContainerPropsType =  MapStatePropsType & MapDispatchPropsType
+type OnContainerPropsType =  MapStatePropsType & MapDispatchPropsType
 
 type MapStatePropsType = ProfileStateType
 
@@ -69,4 +63,8 @@ type MapDispatchPropsType = {
     addPost: (postMessage: string) => void
     setUser: (user: UserProfileType) => void
     toggleIsFetching: (isFetching: boolean) => void
+}
+
+type PathParamsType = {
+    userId: string,
 }

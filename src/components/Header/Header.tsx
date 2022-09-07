@@ -1,7 +1,15 @@
 import React from 'react';
 import style from './Header.module.css'
+import {NavLink} from "react-router-dom";
+import {UserAuthDataType} from "../../redux/auth-reducer";
+import Bogatyrev from '../../assets/images/avatars/friends/Dimych_B.jpg'
 
-export const Header = () => {
+type HeaderPropsType = {
+    userData: UserAuthDataType
+    isAuth: boolean
+}
+
+export const Header = (props: HeaderPropsType) => {
     return (
         <>
             <header className={style.header}>
@@ -19,8 +27,12 @@ export const Header = () => {
                         <p className={style.header_hey}><i>and dont forget "Hey!"</i></p>
                     </div>
 
-                    <div>
-                        <button className={style.sign_in_button}>Sign in</button>
+                    <div className={style.auth}>
+                        {props.isAuth
+                            ? <img className={style.avatar} src={Bogatyrev} alt="my_foto"/>
+                            : <NavLink to={'/login'} className={style.sign_in_button}>Login</NavLink>
+
+                        }
                         <button className={style.sign_up_button}>Sign up</button>
                     </div>
                 </div>
