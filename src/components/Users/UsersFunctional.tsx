@@ -78,7 +78,7 @@ const UsersFunctional: React.FC<UsersContainerPropsType> = (props) => {
                         <div>
                             <div className={style.ava_container}><img src={ u.photos.small !== null ? `${u.photos.small}` : defaultAvatar} alt="user_foto" className={style.avatar}/></div>
                             <button
-                                onClick={() => props.followUnFollow(u.id)}> {u.followed ? 'Follow' : 'UnFollow'}</button>
+                                onClick={() => props.toggleFollow(u.id)}> {u.followed ? 'Follow' : 'UnFollow'}</button>
                         </div>
                         <div style={{padding: '5px'}}>
                             <strong>name</strong>: {u.name}

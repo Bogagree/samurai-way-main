@@ -20,6 +20,7 @@ class ProfileContainer extends React.Component<ProfileContainerPropsType> {
         axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`
         )
             .then((res) => {
+                debugger
                 this.props.setUser(res.data)
                 this.props.toggleIsFetching(false)
             })

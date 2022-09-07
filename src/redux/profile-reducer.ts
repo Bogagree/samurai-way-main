@@ -18,7 +18,16 @@ export const profileReducer = (state = initialState, action: ProfileActionType):
     switch (action.type) {
         case PROFILE_ADD_POST :
             return {
-                ...state
+                ...state,
+                posts: [
+                    ...state.posts, {
+                        id: 100,
+                        message: action.postMessage,
+                        likesCount: 100,
+                        disLikesCount: 50,
+                        published: new Date().toLocaleString()
+                    }
+                ]
             }
         case PROFILE_SET_USER_PROFILE:
             return {

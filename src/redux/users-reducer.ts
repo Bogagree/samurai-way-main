@@ -1,4 +1,4 @@
-const USERS_FOLLOW_UNFOLLOW = 'USERS/FOLLOW-UNFOLLOW'
+const USERS_TOGGLE_FOLLOW = 'USERS/TOGGLE-FOLLOW'
 const USERS_SET_USERS = 'USERS/SET-USER'
 const USERS_SET_CURRENT_PAGE = 'USERS/SET-CURRENT-PAGE'
 const USERS_SET_TOTAL_COUNT = 'USERS/SET-TOTAL-COUNT'
@@ -14,7 +14,7 @@ const initialState: UsersStateType = {
 
 export const usersReducer = (state = initialState, action: UsersActionType): UsersStateType => {
     switch (action.type) {
-        case USERS_FOLLOW_UNFOLLOW :
+        case USERS_TOGGLE_FOLLOW :
             return {
                 ...state,
                 users: state.users.map(u => u.id === action.userId ? {...u, followed: !u.followed} : u)
@@ -45,14 +45,14 @@ export const usersReducer = (state = initialState, action: UsersActionType): Use
 }
 
 type UsersActionType =
-    ReturnType<typeof followUnFollow>
+    ReturnType<typeof toggleFollow>
     | ReturnType<typeof setUsers>
     | ReturnType<typeof setCurrentPage>
     | ReturnType<typeof setTotalCount>
     | ReturnType<typeof toggleIsFetching>
 
-export const followUnFollow = (userId: number) => {
-    return {type: USERS_FOLLOW_UNFOLLOW, userId} as const
+export const toggleFollow = (userId: number) => {
+    return {type: USERS_TOGGLE_FOLLOW, userId} as const
 }
 
 export const setUsers = (users: UserType[]) => {
@@ -86,5 +86,4 @@ export type UserType = {
         large: string | null
     }
     followed: boolean
-
 }
