@@ -3,6 +3,7 @@ const PROFILE_SET_USER_PROFILE = "PROFILE-SET-USER-PROFILE"
 const PROFILE_TOGGLE_ISFETCHING = 'PROFILE/TOGGLE_ISFETCHING'
 
 
+
 const initialState: ProfileStateType = {
 
     posts: [
