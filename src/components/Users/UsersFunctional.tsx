@@ -10,7 +10,7 @@ const UsersFunctional: React.FC<UsersContainerPropsType> = (props) => {
         axios.get('https://social-network.samuraijs.com/api/1.0/users?count=5',
         )
             .then((res) => {
-                props.setUsers(res.data.items)
+                // props.setUsers(res.data.items)
             })
         // props.setUsers([
         //     {

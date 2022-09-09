@@ -1,5 +1,6 @@
 
 .navbar {
+    min-width: 180px;
     grid-area: nav;
     color: #6d6e71;
 }

@@ -1,3 +1,6 @@
+import {Dispatch} from "redux";
+import {usersAPI} from "../api/api";
+
 const USERS_TOGGLE_FOLLOW = 'USERS/TOGGLE-FOLLOW'
 const USERS_SET_USERS = 'USERS/SET-USER'
 const USERS_SET_CURRENT_PAGE = 'USERS/SET-CURRENT-PAGE'
@@ -80,6 +83,34 @@ export const setTotalCount = (totalCount: number) => {
 }
 export const toggleIsFetching = (isFetching: boolean) => {
     return {type: USERS_TOGGLE_IS_FETCHING, isFetching} as const
+}
+
+export const getUsers = (currentPage: number, pageSize: number) => (dispatch: Dispatch) => {
+    dispatch(toggleIsFetching(true))
+    usersAPI.getUsers(currentPage, pageSize)
+        .then((data) => {
+            dispatch(toggleIsFetching(false))
+            dispatch(setUsers(data.items))
+            dispatch(setTotalCount(data.totalCount))
+        })
+}
+
+export const toggleFollowUserTC = (userId: number, isFollowed: boolean) => (dispatch: Dispatch) => {
+    isFollowed
+        ? usersAPI.unFollowUser(userId)
+            .then((res) => {
+                if (res.data.resultCode === 0) {
+                    dispatch(toggleFollow(userId))
+                    dispatch(toggleFollowingProgress(false, userId))
+                }
+            })
+        : usersAPI.followUser(userId)
+            .then((res) => {
+                if (res.data.resultCode === 0) {
+                    dispatch(toggleFollow(userId))
+                    dispatch(toggleFollowingProgress(false, userId))
+                }
+            })
 }
 
 
