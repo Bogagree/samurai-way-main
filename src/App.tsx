@@ -10,6 +10,7 @@ import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 import {ProfileContainerWithConnect} from "./components/Profile/ProfileContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import {HeaderContainerWithConnect} from "./components/Header/HeaderContainer";
+import {Login} from "./components/Login/Login";
 
 
 const MemoHeader = React.memo(HeaderContainerWithConnect)
@@ -34,6 +35,7 @@ export const App = () => {
                     <Route component={News}  path="/news"/>
                     <Route component={Music} path="/music"/>
                     <Route component={Settings} path="/settings"/>
+                    <Route component={Login} path="/login"/>
                 </Switch>
             </div>
         </div>

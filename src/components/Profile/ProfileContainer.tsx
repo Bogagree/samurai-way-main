@@ -1,11 +1,10 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {addPostAC, ProfileStateType, setUser, toggleIsFetching, UserProfileType} from "../../redux/profile-reducer";
+import {getUserProfileTC, ProfileStateType} from "../../redux/profile-reducer";
 import {Profile} from "./Profile";
 import {AppRootStateType} from "../../redux/redux-store";
-import {Dispatch} from "redux";
-import axios from "axios";
-import {RouteComponentProps, withRouter} from "react-router-dom";
+import {Redirect, RouteComponentProps, withRouter} from "react-router-dom";
+import {addPost} from "../../redux/state";
 
 
 class ProfileContainer extends React.Component<ProfileContainerPropsType> {
@@ -15,16 +14,14 @@ class ProfileContainer extends React.Component<ProfileContainerPropsType> {
         if (!userId) {
             userId = '25683'
         }
-        this.props.toggleIsFetching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`
-        )
-            .then((res) => {
-                this.props.setUser(res.data)
-                this.props.toggleIsFetching(false)
-            })
+        this.props.getUserProfileTC(userId)
     }
 
     render() {
+
+        if (!this.props.isAuth) {
+            return <Redirect to={'/login'}/>
+        }
 
         return <>
             < Profile {...this.props}/>
@@ -36,32 +33,35 @@ const mapStateToProps = (state: AppRootStateType): MapStatePropsType => {
     return {
         posts: state.profilePage.posts,
         userProfile: state.profilePage.userProfile,
-        isFetching: state.profilePage.isFetching
+        isFetching: state.profilePage.isFetching,
+        isAuth: state.auth.isAuth
     }
 }
 
-const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
-    return {
-        addPost: (postMessage: string) => dispatch(addPostAC(postMessage)),
-        setUser: (user: UserProfileType) => dispatch(setUser(user)),
-        toggleIsFetching: (isFetching: boolean) => dispatch(toggleIsFetching(isFetching))
-        }
-}
+// const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
+//     return {
+//         addPost: (postMessage: string) => dispatch(addPostAC(postMessage)),
+//         setUser: (user: UserProfileType) => dispatch(setUser(user)),
+//         toggleIsFetching: (isFetching: boolean) => dispatch(toggleIsFetching(isFetching))
+//         }
+// }
 
 let WithUrlDataContainerComponent = withRouter(ProfileContainer)
 
-export const ProfileContainerWithConnect = connect(mapStateToProps, mapDispatchToProps)(WithUrlDataContainerComponent)
+export const ProfileContainerWithConnect = connect(mapStateToProps, {
+    addPost,
+    getUserProfileTC
+})(WithUrlDataContainerComponent)
 
 type ProfileContainerPropsType = RouteComponentProps<PathParamsType> & OnContainerPropsType
 
-type OnContainerPropsType =  MapStatePropsType & MapDispatchPropsType
+type OnContainerPropsType = MapStatePropsType & MapDispatchPropsType
 
-type MapStatePropsType = ProfileStateType
+type MapStatePropsType = ProfileStateType & { isAuth: boolean }
 
 type MapDispatchPropsType = {
     addPost: (postMessage: string) => void
-    setUser: (user: UserProfileType) => void
-    toggleIsFetching: (isFetching: boolean) => void
+    getUserProfileTC: (userId: string) => void
 }
 
 type PathParamsType = {

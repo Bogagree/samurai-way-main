@@ -11,7 +11,8 @@ let mapStateToProps = (state: AppRootStateType) => {
         dialogPage: {
             dialogs: state.dialogsPage.dialogs,
             messages: state.dialogsPage.messages
-        }
+        },
+        isAuth: state.auth.isAuth
     }
 }
 

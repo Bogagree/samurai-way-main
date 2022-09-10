@@ -1,11 +1,15 @@
 .header {
     grid-area: h;
+    display: flex;
+    justify-content: space-between;
     background-color: #ffffff;
     box-shadow: rgba(0, 0, 0, 0.16) 0 3px 6px, rgba(0, 0, 0, 0.23) 0 3px 6px;
+    padding-bottom: 10px;
 }
 
 .header_wrapper {
     display: flex;
+    gap: 10px;
     justify-content: space-between;
     align-items: center;
     padding: 10px;

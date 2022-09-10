@@ -1,7 +1,9 @@
+import {Dispatch} from "redux";
+import {usersAPI} from "../api/api";
+
 const PROFILE_ADD_POST = "ADD-POST"
 const PROFILE_SET_USER_PROFILE = "PROFILE-SET-USER-PROFILE"
 const PROFILE_TOGGLE_ISFETCHING = 'PROFILE/TOGGLE_ISFETCHING'
-
 
 
 const initialState: ProfileStateType = {
@@ -55,6 +57,14 @@ export const setUser = (userProfile: UserProfileType) => {
 
 export const toggleIsFetching = (isFetching: boolean) => {
     return {type: PROFILE_TOGGLE_ISFETCHING, isFetching} as const
+}
+
+export const getUserProfileTC = (userId: string) => (dispatch: Dispatch) => {
+    toggleIsFetching(true)
+    usersAPI.getProfile(userId).then((res) => {
+        dispatch(setUser(res.data))
+        dispatch(toggleIsFetching(false))
+    })
 }
 
 type ProfileActionType = ReturnType<typeof addPostAC>

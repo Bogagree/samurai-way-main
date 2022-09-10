@@ -15,7 +15,7 @@ export const Header = (props: HeaderPropsType) => {
             <header className={style.header}>
                 <div className={style.header_wrapper}>
                     <div className={style.logo}>
-                        <a href="">
+                        <a href="/profile">
                             <h1>TagBogNet</h1>
                             <p className={style.logo_subtitle1}>the WAY of the</p>
                             <p className={style.logo_subtitle2}>WARRIOR</p>
