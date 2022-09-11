@@ -7,10 +7,10 @@ import {News} from "./components/News/News";
 import {Music} from "./components/Music/Music";
 import {Settings} from "./components/Settings/Settings";
 import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
-import {ProfileContainerWithConnect} from "./components/Profile/ProfileContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import {HeaderContainerWithConnect} from "./components/Header/HeaderContainer";
 import {Login} from "./components/Login/Login";
+import ProfileContainer from "./components/Profile/ProfileContainer";
 
 
 const MemoHeader = React.memo(HeaderContainerWithConnect)
@@ -28,7 +28,7 @@ export const App = () => {
                         render={() => <DialogsContainer/>}/>
                     <Route
                         path="/profile/:userId?"
-                        component={ProfileContainerWithConnect}/>
+                        component={ProfileContainer}/>
 
                     <Route path="/users"
                            render={() => <UsersContainer/>}/>

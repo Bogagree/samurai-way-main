@@ -11,6 +11,8 @@ import {
 import {Users} from "./Users";
 import {Preloader} from "../Common/Preloader";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {compose} from "redux";
+import {withRouter} from "react-router-dom";
 
 class UsersContainer extends React.Component<UsersContainerPropsType> {
 
@@ -72,11 +74,17 @@ const mapStateToProps = (state: AppRootStateType): MapStatePropsType => {
 //
 //     }
 // }
+// export default withAuthRedirect(connect(mapStateToProps, {
+//     toggleFollow, toggleFollowingProgress, setCurrentPage, getUsers, toggleFollowUserTC
+// })(UsersContainer))
 
-
-export default withAuthRedirect(connect(mapStateToProps, {
+export default compose<React.ComponentType>(
+    withAuthRedirect,
+    withRouter,
+    connect(mapStateToProps, {
     toggleFollow, toggleFollowingProgress, setCurrentPage, getUsers, toggleFollowUserTC
-})(UsersContainer))
+})
+)(UsersContainer)
 
 export type UsersContainerPropsType = MapStatePropsType & MapDispatchPropsType
 
