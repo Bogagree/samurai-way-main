@@ -9,6 +9,7 @@ type PropsType = {
         dialogs: DialogType[]
         messages: MessageType[]
     }
+    isAuth: boolean
     addMessage: (newMessage: string) => void
 }
 
