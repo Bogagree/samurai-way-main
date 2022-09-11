@@ -1,7 +1,8 @@
 import React from 'react';
 import style from './ProfileInfo.module.css'
 import {UserProfileType} from "../../../redux/profile-reducer";
-import {Preloader} from "../../Common/Preloader";
+import ProfileStatus from "../ProfileStatus";
+
 
 
 type ProfileInfoType = {
@@ -16,17 +17,18 @@ export const ProfileInfo: React.FC<ProfileInfoType> = (props) => {
             <div className={style.profile}>
                 <div className={style.userProfile}>
                     {props.userProfile &&
-                        <img src={props.userProfile.photos.large}/>
+                        <img src={props.userProfile.photos.large} alt={'profile photo'}/>
                     }
                     <br/>
                     full name: {props.userProfile.fullName}
                     <br/>
                     about me: {props.userProfile.aboutMe}
+                    <ProfileStatus status={'Hi friends'}/>
                 </div>
 
-                <img className={style.main_img}
-                     src="https://i.ytimg.com/vi/ONTIDCe0DeE/maxresdefault.jpg"
-                     alt="картинка профайла"/>
+                {/*<img className={style.main_img}*/}
+                {/*     src="https://i.ytimg.com/vi/ONTIDCe0DeE/maxresdefault.jpg"*/}
+                {/*     alt="картинка профайла"/>*/}
 
                 <div>
                     Это мой профайл где будет My ava + description

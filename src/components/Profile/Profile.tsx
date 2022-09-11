@@ -11,7 +11,6 @@ type ProfileType = {
 }
 
 export const Profile: React.FC<ProfileType> = (props) => {
-debugger
         return (
             <div className={style.profile}>
                 {
