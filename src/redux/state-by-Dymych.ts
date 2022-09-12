@@ -1,4 +1,6 @@
-export type StoreType = {
+import React from 'react'
+
+type StoreType = {
     _state: RootStatetype
     getState: () => RootStatetype
     callSubscribe: () => void
@@ -8,7 +10,7 @@ export type StoreType = {
     addMessage: (newMessage:string) => void
 }
 
-export let store: StoreType = {
+let store: StoreType = {
     _state: {
         profilePage: {
             posts: [
@@ -64,7 +66,7 @@ export let store: StoreType = {
         return this._state
     },
     callSubscribe() {
-        console.log('state changed')
+        console.log('stateByDymych changed')
     },
     subscribe(observer: () => void) {
         renderEntireTree = observer
@@ -77,7 +79,7 @@ export let store: StoreType = {
             disLikesCount: 0,
             published: new Date().toLocaleString()
         };
-        state.profilePage.posts.push(newPost)
+        stateByDymych.profilePage.posts.push(newPost)
         renderEntireTree()
     },
     updateNewPostText(newText: string) {
@@ -96,7 +98,7 @@ export let store: StoreType = {
 }
 
 let renderEntireTree = () => {
-    console.log('state changed')
+    console.log('stateByDymych changed')
 }
 
 type MessageType = {
@@ -144,7 +146,7 @@ type RootStatetype = {
     newsPage: NewsPageType
 }
 
-let state: RootStatetype = {
+let stateByDymych: RootStatetype = {
     profilePage: {
         posts: [
             {id: 1, message: "Dude!", likesCount: 1, disLikesCount: 2, published: "7/13/2022, 11:46:03 AM"},
@@ -191,9 +193,10 @@ let state: RootStatetype = {
 };
 
 // @ts-ignore
-window.state = state
+window.state = stateByDymych
 
-export let addPost = (postMessage: string) => {
+
+let addPost = (postMessage: string) => {
     let newPost = {
         id: 5,
         message: postMessage,
@@ -201,28 +204,26 @@ export let addPost = (postMessage: string) => {
         disLikesCount: 0,
         published: new Date().toLocaleString()
     };
-    state.profilePage.posts.push(newPost)
+    stateByDymych.profilePage.posts.push(newPost)
     renderEntireTree()
 }
 
-export let updateNewPostText = (newText: string) => {
-    state.profilePage.newPost = newText
+let updateNewPostText = (newText: string) => {
+    stateByDymych.profilePage.newPost = newText
     renderEntireTree()
 }
 
-export let addMessage = (newComment: string) => {
+let addMessage = (newComment: string) => {
     let newMessage = {
         id: 6,
         message: newComment
     }
-    state.dialogPage.messagesPage.push(newMessage)
+    stateByDymych.dialogPage.messagesPage.push(newMessage)
     renderEntireTree()
 }
 
-export const subscribe = (observer: () => void) => {
+const subscribe = (observer: () => void) => {
     renderEntireTree = observer
 }
-
-export default state
 
 
