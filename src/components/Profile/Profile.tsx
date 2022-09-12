@@ -8,22 +8,27 @@ type ProfileType = {
     posts: PostType[]
     userProfile: UserProfileType | null
     addPost: (newMessage: string) => void
+    updateUserStatusTC: (status: string) => void
+    status: string
 }
 
 export const Profile: React.FC<ProfileType> = (props) => {
-        return (
-            <div className={style.profile}>
-                {
-                    props.userProfile
-                        ? <>
-                            <ProfileInfo userProfile={props.userProfile}/>
-                            <MyPosts posts={props.posts}
-                                     addPost={props.addPost}
-                            /></>
-                        : <MyPosts posts={props.posts}
-                                   addPost={props.addPost}
+    return (
+        <div className={style.profile}>
+            {
+                props.userProfile
+                    ? <>
+                        <ProfileInfo userProfile={props.userProfile}
+                                     status={props.status}
+                                     updateUserStatusTC={props.updateUserStatusTC}
                         />
-                }
-            </div>
-        );
+                        <MyPosts posts={props.posts}
+                                 addPost={props.addPost}
+                        /></>
+                    : <MyPosts posts={props.posts}
+                               addPost={props.addPost}
+                    />
+            }
+        </div>
+    );
 };

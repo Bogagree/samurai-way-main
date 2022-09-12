@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {getUserProfileTC, ProfileStateType} from "../../redux/profile-reducer";
+import {getUserProfileTC, getUserStatusTC, ProfileStateType, updateUserStatusTC} from "../../redux/profile-reducer";
 import {Profile} from "./Profile";
 import {AppRootStateType} from "../../redux/redux-store";
 import { RouteComponentProps, withRouter} from "react-router-dom";
@@ -14,15 +14,24 @@ class ProfileContainer extends React.Component<ProfileContainerPropsType> {
     componentDidMount() {
         let userId = this.props.match.params.userId
         if (!userId) {
-            userId = '25683'
+            // userId = '25683' с котом на аватарке
+            userId = '21868' // мой id
         }
+        debugger
         this.props.getUserProfileTC(userId)
+        // setTimeout(()=> {
+        // },1000)
+        this.props.getUserStatusTC(userId)
     }
 
     render() {
 
         return <>
-            < Profile {...this.props}/>
+            < Profile {...this.props}
+                      userProfile={this.props.userProfile}
+                      status={this.props.status}
+                      updateUserStatusTC={this.props.updateUserStatusTC}
+            />
         </>
     }
 }
@@ -32,6 +41,7 @@ const mapStateToProps = (state: AppRootStateType): MapStatePropsType => {
         posts: state.profilePage.posts,
         userProfile: state.profilePage.userProfile,
         isFetching: state.profilePage.isFetching,
+        status: state.profilePage.status
     }
 }
 
@@ -48,7 +58,9 @@ export default compose<React.ComponentType>(
     withRouter,
     connect(mapStateToProps, {
         addPost,
-        getUserProfileTC
+        getUserProfileTC,
+        getUserStatusTC,
+        updateUserStatusTC
     })
 )(ProfileContainer)
 
@@ -61,6 +73,8 @@ type MapStatePropsType = ProfileStateType
 type MapDispatchPropsType = {
     addPost: (postMessage: string) => void
     getUserProfileTC: (userId: string) => void
+    getUserStatusTC: (userId: string) => void
+    updateUserStatusTC: (status:string) => void
 }
 
 type PathParamsType = {

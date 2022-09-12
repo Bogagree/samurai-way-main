@@ -4,9 +4,10 @@ import {UserProfileType} from "../../../redux/profile-reducer";
 import ProfileStatus from "../ProfileStatus";
 
 
-
 type ProfileInfoType = {
     userProfile: UserProfileType
+    status: string
+    updateUserStatusTC: (status: string) => void
 }
 
 export const ProfileInfo: React.FC<ProfileInfoType> = (props) => {
@@ -23,7 +24,9 @@ export const ProfileInfo: React.FC<ProfileInfoType> = (props) => {
                     full name: {props.userProfile.fullName}
                     <br/>
                     about me: {props.userProfile.aboutMe}
-                    <ProfileStatus status={'Hi friends'}/>
+                    <ProfileStatus status={props.status}
+                                   updateUserStatusTC={props.updateUserStatusTC}
+                    />
                 </div>
 
                 {/*<img className={style.main_img}*/}

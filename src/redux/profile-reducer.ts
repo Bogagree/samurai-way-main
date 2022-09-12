@@ -1,9 +1,10 @@
 import {Dispatch} from "redux";
-import {usersAPI} from "../api/api";
+import {profileAPI, usersAPI} from "../api/api";
 
 const PROFILE_ADD_POST = "ADD-POST"
 const PROFILE_SET_USER_PROFILE = "PROFILE-SET-USER-PROFILE"
 const PROFILE_TOGGLE_ISFETCHING = 'PROFILE/TOGGLE_ISFETCHING'
+const PROFILE_SET_STATUS = 'PROFILE/SET_STATUS'
 
 
 const initialState: ProfileStateType = {
@@ -13,7 +14,8 @@ const initialState: ProfileStateType = {
         {id: 2, message: "What\'s ap man?", likesCount: 3, disLikesCount: 4, published: "7/13/2022, 11:47:03 AM"},
     ],
     userProfile: null,
-    isFetching: false
+    isFetching: false,
+    status: ''
 }
 
 
@@ -42,6 +44,11 @@ export const profileReducer = (state = initialState, action: ProfileActionType):
                 ...state,
                 isFetching: action.isFetching
             }
+        case PROFILE_SET_STATUS :
+            return {
+                ...state,
+                status: action.status
+            }
         default:
             return state
     }
@@ -58,6 +65,9 @@ export const setUser = (userProfile: UserProfileType) => {
 export const toggleIsFetching = (isFetching: boolean) => {
     return {type: PROFILE_TOGGLE_ISFETCHING, isFetching} as const
 }
+export const setUserStatus = (status: string) => {
+    return {type: PROFILE_SET_STATUS, status} as const
+}
 
 export const getUserProfileTC = (userId: string) => (dispatch: Dispatch) => {
     toggleIsFetching(true)
@@ -66,16 +76,37 @@ export const getUserProfileTC = (userId: string) => (dispatch: Dispatch) => {
         dispatch(toggleIsFetching(false))
     })
 }
+export const getUserStatusTC = (userId: string) => (dispatch: Dispatch) => {
+    toggleIsFetching(true)
+    profileAPI.getUserStatus(+userId).then((res) => {
+        debugger
+        dispatch(setUserStatus(res.data))
+        dispatch(toggleIsFetching(false))
+    })
+}
+export const updateUserStatusTC = (status: string) => (dispatch: Dispatch) => {
+    debugger
+    toggleIsFetching(true)
+    profileAPI.updateStatus(status).then((res) => {
+        debugger
+        if (res.data.resultCode === 0) {
+            dispatch(setUserStatus(status))
+            dispatch(toggleIsFetching(false))
+        }
+    })
+}
 
 type ProfileActionType = ReturnType<typeof addPostAC>
     | ReturnType<typeof setUser>
     | ReturnType<typeof toggleIsFetching>
+    | ReturnType<typeof setUserStatus>
 
 
 export type ProfileStateType = {
     posts: PostType[]
     userProfile: UserProfileType | null
     isFetching: boolean
+    status: string
 }
 
 export type PostType = {

@@ -19,7 +19,6 @@ export const authReducer = (state = initialState, action: AuthActionType): AuthS
                 userData: {...state, ...action.payload},
                 isAuth: true
             }
-
         default:
             return state
     }
@@ -36,11 +35,11 @@ export const getUserData = () => (dispatch: Dispatch) => {
     authAPI.me()
         .then((res) => {
             if (res.data.resultCode === 0) {
+                console.log(res.data.data)
                 dispatch(setUserData(res.data.data))
             }
         })
 }
-
 
 export type AuthStateType = {
     userData: UserAuthDataType
@@ -52,4 +51,3 @@ export type UserAuthDataType = {
     login: string | null
     email: string | null
 }
-

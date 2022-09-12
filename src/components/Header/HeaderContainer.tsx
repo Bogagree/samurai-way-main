@@ -1,7 +1,7 @@
 import React from "react";
 import {Header} from "./Header";
 import {connect} from "react-redux";
-import {AuthStateType, getUserData, UserAuthDataType} from "../../redux/auth-reducer";
+import {AuthStateType, getUserData} from "../../redux/auth-reducer";
 import {AppRootStateType} from "../../redux/redux-store";
 
 class HeaderContainer extends React.Component<HeaderContainerPropsType> {
@@ -9,6 +9,7 @@ class HeaderContainer extends React.Component<HeaderContainerPropsType> {
     componentDidMount() {
         this.props.getUserData()
     }
+
 
     render() {
         return (
