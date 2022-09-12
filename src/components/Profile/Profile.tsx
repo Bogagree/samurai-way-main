@@ -24,7 +24,8 @@ export const Profile: React.FC<ProfileType> = (props) => {
                         />
                         <MyPosts posts={props.posts}
                                  addPost={props.addPost}
-                        /></>
+                        />
+                    </>
 
                     : <MyPosts posts={props.posts}
                                addPost={props.addPost}

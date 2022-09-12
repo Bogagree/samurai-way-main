@@ -3,6 +3,7 @@ import style from './Dialogs.module.css'
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
 import {DialogType, MessageType} from "../../redux/dialogs-reducer";
+import {AddMessageReduxForm, DialogsFormDataType,} from "./AddMessageForm";
 
 type PropsType = {
     dialogPage: {
@@ -15,11 +16,9 @@ type PropsType = {
 
 export const Dialogs: React.FC<PropsType> = (props) => {
 
-    let newMessage = React.createRef<HTMLTextAreaElement>()
-
-    const addMessage = () => {
-        let text = newMessage.current?.value
-        text && props.addMessage(text)
+    const onSubmitAddNewMessage = (formData: DialogsFormDataType) => {
+        console.log(formData)
+        props.addMessage(formData.message)
     }
 
     return (
@@ -42,14 +41,11 @@ export const Dialogs: React.FC<PropsType> = (props) => {
                         messagePage={m}
                     />)}
                 <div className={style.sendMessage}>
-                    <textarea name="post"
-                              ref={newMessage}
-                              placeholder={'add message'}
-                              className={style.textArea}>
-                    </textarea>
-                    <button onClick={addMessage}>add message</button>
+                    <AddMessageReduxForm onSubmit={onSubmitAddNewMessage}/>
                 </div>
             </div>
         </div>
     )
 }
+
+

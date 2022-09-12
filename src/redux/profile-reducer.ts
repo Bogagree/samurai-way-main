@@ -26,7 +26,7 @@ export const profileReducer = (state = initialState, action: ProfileActionType):
                 ...state,
                 posts: [
                     ...state.posts, {
-                        id: 100,
+                        id: 100+Math.floor(1000*Math.random()), // костыль
                         message: action.postMessage,
                         likesCount: 100,
                         disLikesCount: 50,
