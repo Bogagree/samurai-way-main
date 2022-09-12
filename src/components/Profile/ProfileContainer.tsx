@@ -1,12 +1,18 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {getUserProfileTC, getUserStatusTC, ProfileStateType, updateUserStatusTC} from "../../redux/profile-reducer";
+import {
+    addPost,
+    getUserProfileTC,
+    getUserStatusTC,
+    ProfileStateType,
+    updateUserStatusTC
+} from "../../redux/profile-reducer";
 import {Profile} from "./Profile";
 import {AppRootStateType} from "../../redux/redux-store";
 import { RouteComponentProps, withRouter} from "react-router-dom";
-import {addPost} from "../../redux/state";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
+
 
 
 class ProfileContainer extends React.Component<ProfileContainerPropsType> {
@@ -17,10 +23,7 @@ class ProfileContainer extends React.Component<ProfileContainerPropsType> {
             // userId = '25683' с котом на аватарке
             userId = '21868' // мой id
         }
-        debugger
         this.props.getUserProfileTC(userId)
-        // setTimeout(()=> {
-        // },1000)
         this.props.getUserStatusTC(userId)
     }
 
@@ -31,6 +34,7 @@ class ProfileContainer extends React.Component<ProfileContainerPropsType> {
                       userProfile={this.props.userProfile}
                       status={this.props.status}
                       updateUserStatusTC={this.props.updateUserStatusTC}
+                      addPost={this.props.addPost}
             />
         </>
     }

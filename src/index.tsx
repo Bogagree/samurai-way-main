@@ -7,22 +7,16 @@ import {Provider} from "react-redux";
 import {store} from "./redux/redux-store";
 
 
-export let renderEntireTree = () => {
+// export let renderEntireTree = () => {
     ReactDOM.render(
         <Provider store={store}>
             <BrowserRouter>
-                <App
-                    // state={store._state}
-                    // addPost={store.addPost.bind(store)}
-                    // addMessage={store.addMessage.bind(store)}
-                    // updateNewPostText={store.updateNewPostText.bind(store)}
-                />,
+                <App/>,
             </BrowserRouter>
         </Provider>
-, document.getElementById('root')
-)
-}
+        , document.getElementById('root')
+    )
 
-renderEntireTree()
+// renderEntireTree()
 
 // store.subscribe(() => renderEntireTree())

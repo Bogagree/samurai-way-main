@@ -54,7 +54,7 @@ export const profileReducer = (state = initialState, action: ProfileActionType):
     }
 };
 
-export const addPostAC = (postMessage: string) => {
+export const addPost = (postMessage: string) => {
     return {type: PROFILE_ADD_POST, postMessage} as const
 }
 
@@ -79,7 +79,6 @@ export const getUserProfileTC = (userId: string) => (dispatch: Dispatch) => {
 export const getUserStatusTC = (userId: string) => (dispatch: Dispatch) => {
     toggleIsFetching(true)
     profileAPI.getUserStatus(+userId).then((res) => {
-        debugger
         dispatch(setUserStatus(res.data))
         dispatch(toggleIsFetching(false))
     })
@@ -88,7 +87,6 @@ export const updateUserStatusTC = (status: string) => (dispatch: Dispatch) => {
     debugger
     toggleIsFetching(true)
     profileAPI.updateStatus(status).then((res) => {
-        debugger
         if (res.data.resultCode === 0) {
             dispatch(setUserStatus(status))
             dispatch(toggleIsFetching(false))
@@ -96,7 +94,7 @@ export const updateUserStatusTC = (status: string) => (dispatch: Dispatch) => {
     })
 }
 
-type ProfileActionType = ReturnType<typeof addPostAC>
+type ProfileActionType = ReturnType<typeof addPost>
     | ReturnType<typeof setUser>
     | ReturnType<typeof toggleIsFetching>
     | ReturnType<typeof setUserStatus>

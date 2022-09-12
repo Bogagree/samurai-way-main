@@ -14,15 +14,15 @@ export const MyPosts: React.FC<MyPostsType> = (props) => {
 
     const addPost = () => {
         let text = newPostElement.current?.value
-        text &&  props.addPost(text);
+        text &&  props.addPost(text)
         // setValue('')
     }
 
     let text = newPostElement.current?.value
 
-    const onChangeHandler = () => {
-        // text && props.updateNewPostText(text)
-    }
+    // const onChangeHandler = () => {
+    //     // text && props.updateNewPostText(text)
+    // }
 
     return (
         <>
@@ -30,7 +30,6 @@ export const MyPosts: React.FC<MyPostsType> = (props) => {
                 <textarea name="post"
                           value={text}
                           ref={newPostElement}
-                          onChange={onChangeHandler}
                 />
                 <button onClick={addPost}>add post</button>
             </div>
