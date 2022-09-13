@@ -47,23 +47,9 @@ export const createField = (placeholder: string | undefined,
                 name={name}
                 validate={validators}
                 component={component}
-                autofocus
+                autoFocus
                 {...props}
             />{text}
         </>
     )
 }
-
-
-// export const Textarea: React.FC<DefaultTextareaPropsType> = ({input, meta, children }) => {
-//     console.log('Textarea')
-//
-//     const hasError = touched && error
-//
-//     return (
-//         <div className={style.formControl + ' ' + (hasError && style.error)}>
-//             <textarea {...input} {...restProps} />
-//             {hasError && <span>{error}</span>}
-//         </div>
-//     )
-// }

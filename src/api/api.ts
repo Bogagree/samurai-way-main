@@ -1,4 +1,5 @@
-import axios from "axios";
+import axios, {AxiosResponse} from "axios";
+import {LoginFormDataType} from "../components/Login/LoginForm";
 
 const instance = axios.create({
     withCredentials: true,
@@ -29,6 +30,14 @@ export const usersAPI = {
 export const authAPI = {
     me() {
         return instance.get('auth/me')
+    },
+    login(data: LoginFormDataType) {
+        return instance.post<LoginFormDataType, AxiosResponse<ResponseType<{ userId: number }>>>('auth/login', {
+            ...data
+        })
+    },
+    logout() {
+        return instance.delete<ResponseType>('auth/login' )
     }
 }
 
@@ -39,10 +48,15 @@ export const profileAPI = {
     getUserStatus(userId: number) {
         return instance.get(`profile/status/${userId}`)
     },
-    updateStatus(status:string) {
+    updateStatus(status: string) {
         return instance.put('profile/status', {status})
     },
+}
 
+export type ResponseType<D = {}> = {
+    resultCode: number
+    messages: string[],
+    data: D
 }
 
 

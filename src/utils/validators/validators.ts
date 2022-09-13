@@ -19,5 +19,7 @@ export const minLengthCreator = (minLength:number): FieldValidatorType => (value
     return undefined
 }
 
-export const maxLength10 = maxLengthCreator(10)
+export const maxLength20 = maxLengthCreator(20)
+export const maxLength25 = maxLengthCreator(25)
+export const maxLength8 = maxLengthCreator(8)
 export const minLength3 = minLengthCreator(3)
