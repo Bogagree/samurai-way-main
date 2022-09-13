@@ -10,15 +10,6 @@ type MyPostsType = {
 
 export const MyPosts: React.FC<MyPostsType> = (props) => {
 
-    // let newPostElement = React.createRef<HTMLTextAreaElement>()
-    //
-    // const addPost = () => {
-    //     let text = newPostElement.current?.value
-    //     text &&  props.addPost(text)
-    //     // setValue('')
-    // }
-    // let text = newPostElement.current?.value
-
     const onSubmitAddPostMessage = (formData: PostsFormDataType) => {
         console.log(formData)
         props.addPost(formData.postMessage)

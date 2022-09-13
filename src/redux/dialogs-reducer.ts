@@ -24,7 +24,11 @@ export const dialogsReducer = (state = initialState, action: DialogsActionsType)
         case ADD_MESSAGE :
             return {
                 ...state,
-                messages: [...state.messages, {id: 7, message: action.newMessage}]
+                messages: [...state.messages,
+                    {
+                        id: 100 + Math.floor(1000 * Math.random()), // костыль,
+                        message: action.newMessage
+                    }]
             }
 
         default:

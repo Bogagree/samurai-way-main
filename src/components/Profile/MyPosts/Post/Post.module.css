@@ -22,11 +22,7 @@ h5, p {
     margin-left: 15px;
 }
 
-.profile_photo_sm {
-    border-radius: 50%;
-    border: 1px solid red;
-    margin-left: 35px;
-}
+
 
 .ion_thumbsup::after {
     content: "";
@@ -44,4 +40,28 @@ h5, p {
     display: inline-block;
     width: 20px;
     height: 20px;
+}
+
+.post_description__wrapper {
+    display: flex;
+    gap: 10px;
+}
+
+.post_description__text {
+    border: 1px solid black;
+    border-radius: 5px;
+   padding: 10px;
+}
+
+.post_comment {
+    border: 1px solid black;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    margin-left: 140px;
+}
+
+.profile_photo_sm {
+    border-radius: 50%;
+    border: 1px solid red;
 }

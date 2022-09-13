@@ -1,6 +1,7 @@
 import React from "react";
-import {Field, InjectedFormProps, reduxForm} from "redux-form";
-
+import {InjectedFormProps, reduxForm} from "redux-form";
+import {maxLength10, minLength3, required} from "../../../utils/validators/validators";
+import {createField, Textarea} from "../../Common/FormsControls/FormsControls";
 
 export type PostsFormDataType = {
     postMessage: string
@@ -10,11 +11,14 @@ export const AddPostForm: React.FC<InjectedFormProps<PostsFormDataType>> = (prop
 
     return (
         <form onSubmit={props.handleSubmit}>
-            <Field name="postMessage"
-                   placeholder={'add post message'}
-                   component={'textarea'}
-                 >
-            </Field>
+            {/*<Field*/}
+            {/*    name="postMessage"*/}
+            {/*    placeholder={'add post message'}*/}
+            {/*    component={Textarea}*/}
+            {/*    validate={[required, maxLength10]}*/}
+            {/*>*/}
+            {/*</Field>*/}
+            {createField('add post message', 'postMessage',[required, maxLength10, minLength3], Textarea)}
             <button>add post</button>
         </form>
     )
