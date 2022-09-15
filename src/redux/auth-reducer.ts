@@ -1,6 +1,7 @@
 import {Dispatch} from "redux";
 import {authAPI} from "../api/api";
 import {LoginFormDataType} from "../components/Login/LoginForm";
+import {stopSubmit} from "redux-form";
 
 const AUTH_SET_USER_DATA = 'AUTH/SET-USER-DATA'
 
@@ -18,7 +19,9 @@ export const authReducer = (state = initialState, action: AuthActionType): AuthS
         case AUTH_SET_USER_DATA :
             return {
                 ...state,
-                userData: {...state, password: action.payload.login, email:action.payload.email, id:action.payload.userId},
+                userData: {
+                    ...action.payload
+                },
                 isAuth: action.payload.isAuth
             }
         default:
@@ -29,42 +32,46 @@ export const authReducer = (state = initialState, action: AuthActionType): AuthS
 type AuthActionType =
     ReturnType<typeof setUserData>
 
-// export const setUserData = (data: UserAuthDataType) => {
-//     return {type: AUTH_SET_USER_DATA, payload: {...data}} as const
-// }
-export const setUserData = (userId: number | null, email: string | null, login: string | null, isAuth: boolean) => {
-    return {type: AUTH_SET_USER_DATA, payload: {userId, email, login, isAuth}} as const
+export const setUserData = (data: UserAuthDataType, isAuth: boolean) => {
+    return {type: AUTH_SET_USER_DATA, payload: {...data, isAuth}} as const
 }
+// export const setUserData = (userId: number | null, email: string | null, login: string | null, isAuth: boolean) => {
+//     return {type: AUTH_SET_USER_DATA, payload: {userId, email, login, isAuth}} as const
+// }
 
 export const getUserData = () => (dispatch: Dispatch) => {
     authAPI.me()
         .then((res) => {
             if (res.data.resultCode === 0) {
-                dispatch(setUserData(res.data.data.id, res.data.data.email, res.data.data.login, true))
+                // dispatch(setUserData(res.data.data.id, res.data.data.email, res.data.data.login, true))
+                dispatch(setUserData(res.data.data, true))
             }
         })
 }
 
-export const loginTC = (data: LoginFormDataType) => (dispatch: Dispatch<AuthActionType>) => {
+export const loginTC = (data: LoginFormDataType) => (dispatch: Dispatch) => {
     authAPI.login(data)
         .then((res) => {
             if (res.data.resultCode === 0) {
-                // dispatch(getUserData())
                 authAPI.me()
                     .then((res) => {
                         if (res.data.resultCode === 0) {
-                            dispatch(setUserData(res.data.data.userId, data.email, data.password, true))
+                            dispatch(setUserData(res.data.data, true))
                         }
                     })
+            } else {
+                let message = res.data.messages[0]
+                let action = stopSubmit('login', {_error: message})
+                dispatch(action)
             }
         })
 }
 
 export const logoutTC = () => (dispatch: Dispatch) => {
     authAPI.logout()
-        .then((res)=> {
+        .then((res) => {
             if (res.data.resultCode === 0) {
-                dispatch(setUserData(null,null,null,false))
+                dispatch(setUserData({email: null, password: null, id: null}, false))
             }
         })
 }

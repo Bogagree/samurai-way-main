@@ -21,7 +21,8 @@ class ProfileContainer extends React.Component<ProfileContainerPropsType> {
         let userId = this.props.match.params.userId
         if (!userId) {
             // userId = '25683' с котом на аватарке
-            userId = '21868' // мой id
+            // userId = '21868' // мой id
+            userId= this.props.authorisedUserId !== null ? (this.props.authorisedUserId).toString() : '' // похоже еще один костыль
         }
         this.props.getUserProfileTC(userId)
         this.props.getUserStatusTC(userId)
@@ -45,7 +46,8 @@ const mapStateToProps = (state: AppRootStateType): MapStatePropsType => {
         posts: state.profilePage.posts,
         userProfile: state.profilePage.userProfile,
         isFetching: state.profilePage.isFetching,
-        status: state.profilePage.status
+        status: state.profilePage.status,
+        authorisedUserId: state.auth.userData.id
     }
 }
 
@@ -64,7 +66,7 @@ type ProfileContainerPropsType = RouteComponentProps<PathParamsType> & OnContain
 
 type OnContainerPropsType = MapStatePropsType & MapDispatchPropsType
 
-type MapStatePropsType = ProfileStateType
+type MapStatePropsType = ProfileStateType & {authorisedUserId: number | null}
 
 type MapDispatchPropsType = {
     addPost: (postMessage: string) => void

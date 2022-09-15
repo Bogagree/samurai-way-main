@@ -10,7 +10,6 @@ class HeaderContainer extends React.Component<HeaderContainerPropsType> {
         this.props.getUserData()
     }
 
-
     render() {
         return (
             <Header {...this.props} logout={this.props.logoutTC}/>
