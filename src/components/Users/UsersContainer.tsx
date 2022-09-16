@@ -54,29 +54,6 @@ const mapStateToProps = (state: AppRootStateType): MapStatePropsType => {
         followingInProgress: state.usersPage.followingInProgress
     }
 }
-// const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
-//     return {
-//         isFollowed: (userId: number) => {
-//             dispatch(followUnFollowAC(userId))
-//         },
-//         setUsers: (users: UserType[]) => {
-//             dispatch(setUsersAC(users))
-//         },
-//         toggleIsFetching: (isFetching: boolean) => {
-//             dispatch(toggleIsFetchingAC(isFetching))
-//         }
-//         setCurrentPage: (currentPage: number) => {
-//             dispatch(setCurrentPageAC(currentPage))
-//         },
-//         setTotalCount: (totalCount: number) => {
-//             dispatch(setTotalCountAC(totalCount))
-//         },
-//
-//     }
-// }
-// export default withAuthRedirect(connect(mapStateToProps, {
-//     toggleFollow, toggleFollowingProgress, setCurrentPage, getUsers, toggleFollowUserTC
-// })(UsersContainer))
 
 export default compose<React.ComponentType>(
     withAuthRedirect,

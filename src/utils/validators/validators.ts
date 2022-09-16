@@ -8,13 +8,11 @@ export const required: FieldValidatorType = (value) => {
 }
 
 export const maxLengthCreator = (maxLength:number): FieldValidatorType => (value: string) => {
-    console.log(value.length)
     if (value && value.length > maxLength) return `Max length is ${maxLength} symbols`
     return undefined
 }
 
 export const minLengthCreator = (minLength:number): FieldValidatorType => (value: string) => {
-    console.log(value.length)
     if (value && value.length <= minLength) return `Min length sould be more ${minLength} symbols`
     return undefined
 }
