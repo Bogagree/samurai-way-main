@@ -24,6 +24,10 @@ class ProfileContainer extends React.Component<ProfileContainerPropsType> {
             // userId = '21868' // мой id
             userId= this.props.authorisedUserId !== null ? (this.props.authorisedUserId).toString() : '' // похоже еще один костыль
         }
+        if (!userId) {
+            this.props.history.push('login')
+        }
+
         this.props.getUserProfileTC(userId)
         this.props.getUserStatusTC(userId)
     }

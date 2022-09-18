@@ -10,12 +10,10 @@ type HeaderPropsType = {
 
 export const Header = (props: HeaderPropsType) => {
 
-    if (!props.isAuth) {
-        return <Redirect to={'/login'}/>
-    }
-
     return (
         <>
+            if (!props.isAuth) {<Redirect to={'/login'}/>}
+
             <header className={style.header}>
                 <div className={style.header_wrapper}>
                     <div className={style.logo}>
