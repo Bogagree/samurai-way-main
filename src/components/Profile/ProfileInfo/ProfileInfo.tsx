@@ -2,6 +2,7 @@ import React from 'react';
 import style from './ProfileInfo.module.css'
 import {UserProfileType} from "../../../redux/profile-reducer";
 import ProfileStatus from "../ProfileStatus";
+import {ProfileStatusFunctional} from "../ProfileStatusFunctional";
 
 
 type ProfileInfoType = {
@@ -25,6 +26,10 @@ export const ProfileInfo: React.FC<ProfileInfoType> = (props) => {
                     <ProfileStatus status={props.status}
                                    updateUserStatusTC={props.updateUserStatusTC}
                     />
+                    <ProfileStatusFunctional
+                        status={props.status}
+                        updateUserStatusTC={props.updateUserStatusTC}
+                    />
                 </div>
 
                 {/*<img className={style.main_img}*/}
@@ -37,5 +42,6 @@ export const ProfileInfo: React.FC<ProfileInfoType> = (props) => {
 
             </div>
         </div>
-    );
+    )
+        ;
 }

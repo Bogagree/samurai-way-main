@@ -84,7 +84,6 @@ export const getUserStatusTC = (userId: string) => (dispatch: Dispatch) => {
     })
 }
 export const updateUserStatusTC = (status: string) => (dispatch: Dispatch) => {
-    debugger
     toggleIsFetching(true)
     profileAPI.updateStatus(status).then((res) => {
         if (res.data.resultCode === 0) {
