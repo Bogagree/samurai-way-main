@@ -8,7 +8,8 @@ type MyPostsType = {
     addPost: (newMessage: string) => void
 }
 
-export const MyPosts: React.FC<MyPostsType> = (props) => {
+export const MyPosts: React.FC<MyPostsType> = React.memo((props) => {
+    console.log('render myPosts')
 
     const onSubmitAddPostMessage = (formData: PostsFormDataType) => {
         console.log(formData)
@@ -31,5 +32,5 @@ export const MyPosts: React.FC<MyPostsType> = (props) => {
             </div>
         </>
     );
-};
+})
 
