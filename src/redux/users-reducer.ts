@@ -8,13 +8,13 @@ const USERS_SET_TOTAL_COUNT = 'USERS/SET-TOTAL-COUNT'
 const USERS_TOGGLE_IS_FETCHING = 'USERS/TOGGLE-IS-FETCHING'
 const USERS_TOGGLE_FOLLOWING_PROGRESS = 'USERS/TOGGLE_FOLLOWING_PROGRESS'
 
-const initialState: UsersStateType = {
-    users: [],
+const initialState = {
+    users: [] as UserType[],
     pageSize: 15,
     totalCount: 0,
     currentPage: 1,
     isFetching: false,
-    followingInProgress: []
+    followingInProgress: [] as number[]
 }
 
 export const usersReducer = (state = initialState, action: UsersActionType): UsersStateType => {
@@ -115,14 +115,7 @@ export const toggleFollowUserTC = (userId: number, isFollowed: boolean) => (disp
 }
 
 
-export type UsersStateType = {
-    users: UserType[]
-    pageSize: number
-    totalCount: number
-    currentPage: number
-    isFetching: boolean
-    followingInProgress: number[]
-}
+export type UsersStateType = typeof initialState
 
 export type UserType = {
     id: number

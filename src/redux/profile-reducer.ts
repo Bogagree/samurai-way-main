@@ -1,9 +1,9 @@
 import {Dispatch} from "redux";
 import {profileAPI, usersAPI} from "../api/api";
 
-const PROFILE_ADD_POST = "ADD-POST"
-const PROFILE_SET_USER_PROFILE = "PROFILE-SET-USER-PROFILE"
-const PROFILE_TOGGLE_ISFETCHING = 'PROFILE/TOGGLE_ISFETCHING'
+const PROFILE_ADD_POST = "PROFILE/ADD-POST"
+const PROFILE_SET_USER_PROFILE = "PROFILE/SET-USER-PROFILE"
+const PROFILE_TOGGLE_IS_FETCHING = 'PROFILE/TOGGLE-IS-FETCHING'
 const PROFILE_SET_STATUS = 'PROFILE/SET_STATUS'
 
 
@@ -39,7 +39,7 @@ export const profileReducer = (state = initialState, action: ProfileActionType):
                 ...state,
                 userProfile: action.userProfile
             }
-        case PROFILE_TOGGLE_ISFETCHING :
+        case PROFILE_TOGGLE_IS_FETCHING :
             return {
                 ...state,
                 isFetching: action.isFetching
@@ -63,7 +63,7 @@ export const setUser = (userProfile: UserProfileType) => {
 }
 
 export const toggleIsFetching = (isFetching: boolean) => {
-    return {type: PROFILE_TOGGLE_ISFETCHING, isFetching} as const
+    return {type: PROFILE_TOGGLE_IS_FETCHING, isFetching} as const
 }
 export const setUserStatus = (status: string) => {
     return {type: PROFILE_SET_STATUS, status} as const

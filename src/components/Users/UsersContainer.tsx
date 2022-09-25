@@ -5,7 +5,8 @@ import {
     requestUsersTC,
     setCurrentPage,
     toggleFollow,
-    toggleFollowingProgress, toggleFollowUserTC,
+    toggleFollowingProgress,
+    toggleFollowUserTC,
     UsersStateType
 } from "../../redux/users-reducer";
 import {Users} from "./Users";
@@ -13,10 +14,14 @@ import {Preloader} from "../Common/Preloader";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
 import {withRouter} from "react-router-dom";
-import {getUsers, getUsersCurrentPage, getUsersTotalCount} from "../../redux/users-selector";
-import {getUsersPageSize} from "../../redux/users-selector";
-import {getUsersIsFetching} from "../../redux/users-selector";
-import {getUsersFollowingInProgress} from "../../redux/users-selector";
+import {
+    getUsers,
+    getUsersCurrentPage,
+    getUsersFollowingInProgress,
+    getUsersIsFetching,
+    getUsersPageSize,
+    getUsersTotalCount
+} from "../../redux/users-selector";
 
 class UsersContainer extends React.Component<UsersContainerPropsType> {
 
@@ -47,17 +52,6 @@ class UsersContainer extends React.Component<UsersContainerPropsType> {
         </>
     }
 }
-
-// const mapStateToProps = (state: AppRootStateType): MapStatePropsType => {
-//     return {
-//         users: state.usersPage.users,
-//         pageSize: state.usersPage.pageSize,
-//         totalCount: state.usersPage.totalCount,
-//         currentPage: state.usersPage.currentPage,
-//         isFetching: state.usersPage.isFetching,
-//         followingInProgress: state.usersPage.followingInProgress
-//     }
-// }
 
 const mapStateToProps = (state: AppRootStateType): MapStatePropsType => {
     return {

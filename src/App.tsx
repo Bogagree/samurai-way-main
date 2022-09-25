@@ -2,7 +2,7 @@ import React from 'react';
 import 'normalize.css'
 import './App.css';
 import {Navbar} from "./components/Navbar/Navbar";
-import {Route, Router, Switch, withRouter} from "react-router-dom";
+import {Route, Switch, withRouter} from "react-router-dom";
 import {News} from "./components/News/News";
 import {Music} from "./components/Music/Music";
 import {Settings} from "./components/Settings/Settings";
@@ -17,7 +17,6 @@ import {getUserData} from "./redux/auth-reducer";
 import {compose} from "redux";
 import {AppStateType, initializeApp} from "./redux/app-reducer";
 import {Preloader} from "./components/Common/Preloader";
-
 
 const MemoHeader = React.memo(HeaderContainerWithConnect)
 
@@ -48,7 +47,6 @@ class App extends React.Component<AppContainerPropsType> {
                                 <Route component={News} path="/news"/>
                                 <Route component={Music} path="/music"/>
                                 <Route component={Settings} path="/settings"/>
-
                                 <Route component={Login} path="/login"/>
                             </Switch>
                         </div>
