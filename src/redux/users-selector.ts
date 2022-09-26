@@ -14,6 +14,7 @@ type UsersSelectorReturnType = (state: AppRootStateType) => UserType[]
 
 export const getUsersSuperSelector = (users: UserType[]): UsersSelectorReturnType => createSelector(
     [
+        // (state: AppRootStateType) => state.usersPage.users,
         getUsers,
         (state: AppRootStateType) => state.usersPage.followingInProgress
     ],

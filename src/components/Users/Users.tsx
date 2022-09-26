@@ -5,7 +5,7 @@ import {User} from "./User";
 
 type UsersComponentPropsType = {
     users: UserType[]
-    totalCount: number
+    totalUsersCount: number
     pageSize: number
     currentPage: number
     onPageChanged: (p: number) => void
@@ -18,7 +18,7 @@ type UsersComponentPropsType = {
 export const Users: React.FC<UsersComponentPropsType> = (
     {
         users,
-        totalCount,
+        totalUsersCount,
         pageSize,
         currentPage,
         onPageChanged,
@@ -32,10 +32,11 @@ export const Users: React.FC<UsersComponentPropsType> = (
         <div style={{padding: '15px'}}>
             <h1>Users</h1>
             <Paginator
-                totalCount={totalCount}
+                totalItemsCount={totalUsersCount}
                 pageSize={pageSize}
                 currentPage={currentPage}
                 onPageChanged={onPageChanged}
+                portionSize={10}
             />
             {
                 users.map(u => <User

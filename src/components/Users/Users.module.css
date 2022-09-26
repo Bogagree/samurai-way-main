@@ -8,18 +8,6 @@
     border-radius: 50%;
 }
 
-.pageNumber {
-    padding: 5px;
-}
-
-.pageNumber:hover {
-    cursor: pointer;
-}
-
-.selectedPage {
-    font-weight: bold;
-}
-
 .preloader {
     position: absolute;
     border-radius: 50%;

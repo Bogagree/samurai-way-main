@@ -44,7 +44,7 @@ class UsersContainer extends React.Component<UsersContainerPropsType> {
                 currentPage={this.props.currentPage}
                 toggleFollow={this.props.toggleFollow}
                 pageSize={this.props.pageSize}
-                totalCount={this.props.totalCount}
+                totalUsersCount={this.props.totalCount}
                 followingInProgress={this.props.followingInProgress}
                 toggleFollowingProgress={this.props.toggleFollowingProgress}
                 toggleFollowUserTC={this.props.toggleFollowUserTC}
@@ -57,21 +57,19 @@ const mapStateToProps = (state: AppRootStateType): MapStatePropsType => {
     return {
         users: getUsers(state),
         pageSize: getUsersPageSize(state),
-        totalCount:getUsersTotalCount(state),
+        totalCount: getUsersTotalCount(state),
         currentPage: getUsersCurrentPage(state),
         isFetching: getUsersIsFetching(state),
         followingInProgress: getUsersFollowingInProgress(state)
     }
 }
 
-
-
 export default compose<React.ComponentType>(
     withAuthRedirect,
     withRouter,
     connect(mapStateToProps, {
-    toggleFollow, toggleFollowingProgress, setCurrentPage, requestUsersTC, toggleFollowUserTC
-})
+        toggleFollow, toggleFollowingProgress, setCurrentPage, requestUsersTC, toggleFollowUserTC
+    })
 )(UsersContainer)
 
 export type UsersContainerPropsType = MapStatePropsType & MapDispatchPropsType
@@ -83,5 +81,5 @@ type MapDispatchPropsType = {
     setCurrentPage: (currentPage: number) => void
     toggleFollowingProgress: (isFetching: boolean, userId: number) => void
     requestUsersTC: (currentPage: number, pageSize: number) => void
-    toggleFollowUserTC: (userId:number, isFollowed:boolean) => void
+    toggleFollowUserTC: (userId: number, isFollowed: boolean) => void
 }

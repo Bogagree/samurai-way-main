@@ -9,10 +9,8 @@ type MyPostsType = {
 }
 
 export const MyPosts: React.FC<MyPostsType> = React.memo((props) => {
-    console.log('render myPosts')
 
     const onSubmitAddPostMessage = (formData: PostsFormDataType) => {
-        console.log(formData)
         props.addPost(formData.postMessage)
     }
 
