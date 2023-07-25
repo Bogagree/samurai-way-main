@@ -17,6 +17,7 @@ import {getUserData} from "./redux/auth-reducer";
 import {compose} from "redux";
 import {AppStateType, initializeApp} from "./redux/app-reducer";
 import {Preloader} from "./components/Common/Preloader";
+import {Photos} from './components/Photos/Photos';
 
 const MemoHeader = React.memo(HeaderContainerWithConnect)
 
@@ -45,6 +46,7 @@ class App extends React.Component<AppContainerPropsType> {
                                        component={UsersContainer}/>
 
                                 <Route component={News} path="/news"/>
+                                <Route component={Photos} path="/photos"/>
                                 <Route component={Music} path="/music"/>
                                 <Route component={Settings} path="/settings"/>
                                 <Route component={Login} path="/login"/>

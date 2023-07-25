@@ -43,6 +43,11 @@ export const Navbar: React.FC<NavbarPropsType> = (props) => {
                             <NavLink to="/settings" activeClassName={style.activeLink}>Settings</NavLink>
                         </div>
                     </li>
+                    <li>
+                        <div className={`${style.item} ${style.item_settings}`}>
+                            <NavLink to="/photos" activeClassName={style.activeLink}>Photos</NavLink>
+                        </div>
+                    </li>
                 </ul>
 
 
