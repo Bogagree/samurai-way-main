@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react";
-import style from './Photos.module.css'
+import styles from './Photos.module.css'
 
-type NewsPropsType = {}
+type PropsType = {}
 
-export const Photos = (props: NewsPropsType) => {
+export const Photos = (props: PropsType) => {
 
     const [data, setData] = useState<any>()
 
@@ -18,7 +18,7 @@ export const Photos = (props: NewsPropsType) => {
     }, [])
 
     return (
-        <div>
+        <div className={styles.Photos}>
             {data && <>
                 <img src={data.photo.url}/>
                 <h1>{data.photo.title}</h1>
