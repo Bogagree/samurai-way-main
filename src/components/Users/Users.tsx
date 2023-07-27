@@ -1,4 +1,4 @@
-import React from "react";
+import React, {FC} from "react";
 import {UserType} from "../../redux/users-reducer";
 import {Paginator} from "../Common/Paginator/Paginator";
 import {User} from "./User";
@@ -15,7 +15,7 @@ type UsersComponentPropsType = {
     toggleFollowUserTC: (userId: number, isFollowed: boolean) => void
 }
 
-export const Users: React.FC<UsersComponentPropsType> = (
+export const Users: FC<UsersComponentPropsType> = (
     {
         users,
         totalUsersCount,

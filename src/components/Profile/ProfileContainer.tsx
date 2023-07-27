@@ -9,10 +9,9 @@ import {
 } from "../../redux/profile-reducer";
 import {Profile} from "./Profile";
 import {AppRootStateType} from "../../redux/redux-store";
-import { RouteComponentProps, withRouter} from "react-router-dom";
+import {RouteComponentProps, withRouter} from "react-router-dom";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
-
 
 
 class ProfileContainer extends React.Component<ProfileContainerPropsType> {
@@ -22,7 +21,7 @@ class ProfileContainer extends React.Component<ProfileContainerPropsType> {
         if (!userId) {
             // userId = '25683' с котом на аватарке
             // userId = '21868' // мой id
-            userId= this.props.authorisedUserId !== null ? (this.props.authorisedUserId).toString() : '' // похоже еще один костыль
+            userId = this.props.authorisedUserId !== null ? (this.props.authorisedUserId).toString() : '' // похоже еще один костыль
         }
         if (!userId) {
             this.props.history.push('login')
@@ -70,13 +69,13 @@ type ProfileContainerPropsType = RouteComponentProps<PathParamsType> & OnContain
 
 type OnContainerPropsType = MapStatePropsType & MapDispatchPropsType
 
-type MapStatePropsType = ProfileStateType & {authorisedUserId: number | null}
+type MapStatePropsType = ProfileStateType & { authorisedUserId: number | null }
 
 type MapDispatchPropsType = {
     addPost: (postMessage: string) => void
     getUserProfileTC: (userId: string) => void
     getUserStatusTC: (userId: string) => void
-    updateUserStatusTC: (status:string) => void
+    updateUserStatusTC: (status: string) => void
 }
 
 type PathParamsType = {
