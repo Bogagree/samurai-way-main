@@ -6,6 +6,7 @@ import {AppRootStateType} from "../../redux/redux-store";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {withRouter} from "react-router-dom";
 import {Photos} from './Photos';
+import {PhotoType, setPhotos} from '../../redux/photos-reducer';
 
 
 let mapStateToProps = (state: AppRootStateType) => {
@@ -19,8 +20,8 @@ let mapStateToProps = (state: AppRootStateType) => {
 
 let mapDispatchToProps = (dispatch: Dispatch) => {
     return {
-        addMessage: (newMessage: string) => {
-            dispatch(addMessageAC(newMessage))
+        addMessage: (newPhoto: PhotoType) => {
+            dispatch(setPhotos(newPhoto))
         }
     }
 }
