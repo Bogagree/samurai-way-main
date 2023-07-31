@@ -23,11 +23,12 @@ export const setPhotos = (photo: PhotoType) => {
     return {type: PHOTOS_ADD_PHOTO, photo} as const
 }
 
-export const getPhotosTC = (user: number) => (dispatch: Dispatch) => {
-    fetch('https://api.slingacademy.com/v1/sample-data/photos/2')
+export const getPhotosTC = (photoNumber: number) => (dispatch: Dispatch) => {
+    fetch(`https://api.slingacademy.com/v1/sample-data/photos/${photoNumber}`)
         .then((response) => response.json())
         .then((data: PhotoType) => {
-            setPhotos(data)
+            console.log('getPhotosTC', data)
+            dispatch(setPhotos(data))
         })
 }
 
