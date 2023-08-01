@@ -2,21 +2,18 @@ import {AppRootStateType} from "./redux-store";
 import {createSelector} from "reselect";
 import {UserType} from "./users-reducer";
 
-export const getUsers = (state: AppRootStateType) => {
+export const getUsersSelector = (state: AppRootStateType) => {
     return state.usersPage.users
 }
 
-export const getUsersSelector = (state: AppRootStateType) => {
-    return getUsers(state).filter(u => true)
-}
+// export const getUsersSelector = (state: AppRootStateType) => {
+//     return getUsers(state).filter(u => true)
+// }
 
-type UsersSelectorReturnType = (state: AppRootStateType) => UserType[]
-
-export const getUsersSuperSelector = (users: UserType[]): UsersSelectorReturnType => createSelector(
+export const getUsers = createSelector(
     [
-        // (state: AppRootStateType) => state.usersPage.users,
-        getUsers,
-        (state: AppRootStateType) => state.usersPage.followingInProgress
+        getUsersSelector,
+        (state: AppRootStateType) => state.usersPage.followingInProgress,
     ],
     (users) => users.filter(u => true)
 )
